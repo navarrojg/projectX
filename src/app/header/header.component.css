@@ -1,0 +1,18 @@
+a {
+  text-decoration: none;
+  color: #fff;
+  margin: 0 10px;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.activebutton {
+  background-color: #ff4081;
+}
