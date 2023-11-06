@@ -9,9 +9,11 @@ import { HeaderComponent } from './header/header.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { PetsListComponent } from './pets/pets-list/pets-list.component';
+import { PetCreateComponent } from './pets/pet-create/pet-create.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
+  declarations: [AppComponent, HeaderComponent, PetsListComponent, PetCreateComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
