@@ -1,0 +1,17 @@
+.example-card {
+  margin: 1em;
+  background-color: #7b1fa2;
+  width: 200px;
+}
+
+.example-header-image {
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
+}
+
+.pets-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  padding: 2em;
+}
