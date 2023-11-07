@@ -5,13 +5,25 @@
 }
 
 .example-header-image {
-  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-image: url("https://img.freepik.com/premium-vector/creative-canine-logo-design-vector-dog-head-illustration-icon-pet-shop_950157-1962.jpg?w=2000");
   background-size: cover;
 }
 
 .pets-list {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  justify-content: center;
   padding: 2em;
+}
+
+button {
+  border: 1px solid white;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+}
+mat-card-title {
+  color: whitesmoke;
 }
