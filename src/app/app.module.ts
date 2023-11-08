@@ -16,6 +16,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     ReactiveFormsModule,
     MatProgressSpinnerModule,
     MatDialogModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
