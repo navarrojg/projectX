@@ -21,6 +21,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 
 import { HttpClient } from '@angular/common/http';
+import { PetDetailsComponent } from './pets/pet-details/pet-details.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { HttpClient } from '@angular/common/http';
     HeaderComponent,
     PetsListComponent,
     PetCreateComponent,
+    PetDetailsComponent,
   ],
   imports: [
     CommonModule,
