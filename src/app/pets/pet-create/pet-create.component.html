@@ -1,64 +1,27 @@
-<!-- <mat-card>
-    <form (submit)="onSavePost()" [formGroup]="form" class="example-form">
-
-        <mat-form-field class="example-full-width">
-            <input matInput type="text" formControlName="name" placeholder="Pet Name">
-            <mat-error *ngIf="form.get('name').invalid">Please enter pet's name.</mat-error>
-        </mat-form-field> -->
-
-<!-- <mat-form-field>
-            <mat-label>Pet's sex</mat-label>
-            <mat-select name="sex">
-                <mat-option value="M">M</mat-option>
-                <mat-option value="F">F</mat-option>
-            </mat-select>
-            <mat-error *ngIf="form.get('sex').invalid">Please enter pet's sex.</mat-error>
-        </mat-form-field> -->
-
-<!-- <mat-form-field>
-            <input matInput type="number" formControlName="age" placeholder="Pet's Age">
-            <mat-error *ngIf="form.get('age').invalid">Please enter pet's age.</mat-error>
-        </mat-form-field>
-
-        <mat-form-field>
-            <input matInput type="text" formControlName="breed" placeholder="Pet's breed">
-            <mat-error *ngIf="form.get('breed').invalid">Please enter pet's breed.</mat-error>
-        </mat-form-field> -->
-<!-- <div>
-                <button mat-stroked-button type="button" (click)="filePicker.click()">Pick Image</button>
-                <input type="file" #filePicker (change)="onImagePicked()">
-            </div>
-            <div class="image-preview">
-                <img [alt]="form.value.title">
-            </div> -->
-
-<!-- <button mat-raised-button color="accent" type="submit">Save Pet</button>
-    </form>
-</mat-card> -->
-
 <mat-card>
-    <form>
+    <form (submit)="onSavePost()" [formGroup]="form">
 
         <mat-form-field>
-            <input matInput type="text" placeholder="Pet's name">
+            <input matInput type="text" placeholder="Pet's name" formControlName="name">
             <mat-error *ngIf="form.get('name').invalid">Please enter pet's name.</mat-error>
         </mat-form-field>
         <mat-form-field>
-            <select matNativeControl name="sex">
-                <option value="0" selected disabled>Not selected</option>
+            <mat-label>Pet's sex</mat-label>
+            <select matNativeControl name="sex" formControlName="sex">
+                <!-- <option value="0" selected disabled>Not selected</option> -->
                 <option value="M">M</option>
                 <option value="F">F</option>
             </select>
-            <!-- <mat-error *ngIf="form.get('sex').invalid">Please enter pet's sex.</mat-error> -->
+            <mat-error *ngIf="form.get('sex').hasError('required')">Please enter pet's sex.</mat-error>
         </mat-form-field>
         <mat-form-field>
-            <input matInput type="number" placeholder="Pet's age">
-            <!-- <mat-error *ngIf="form.get('age').invalid">Please enter pet's age.</mat-error> -->
+            <input matInput type="number" placeholder="Pet's age" formControlName="age">
+            <mat-error *ngIf="form.get('age').invalid">Please enter pet's age.</mat-error>
         </mat-form-field>
         <mat-form-field>
-            <input matInput type="text" placeholder="Pet's breed">
-            <!-- <mat-error *ngIf="form.get('breed').invalid">Please enter pet's breed.</mat-error> -->
+            <input matInput type="text" placeholder="Pet's breed" formControlName="breed">
+            <mat-error *ngIf="form.get('breed').invalid">Please enter pet's breed.</mat-error>
         </mat-form-field>
-
+        <button mat-raised-button color="accent" type="submit">Save Pet</button>
     </form>
 </mat-card>
