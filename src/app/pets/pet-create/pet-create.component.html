@@ -8,11 +8,10 @@
         <mat-form-field>
             <mat-label>Pet's sex</mat-label>
             <select matNativeControl name="sex" formControlName="sex">
-                <!-- <option value="0" selected disabled>Not selected</option> -->
                 <option value="M">M</option>
                 <option value="F">F</option>
             </select>
-            <mat-error *ngIf="form.get('sex').hasError('required')">Please enter pet's sex.</mat-error>
+            <mat-error *ngIf="form.get('sex').invalid">Please enter pet's sex.</mat-error>
         </mat-form-field>
         <mat-form-field>
             <input matInput type="number" placeholder="Pet's age" formControlName="age">
