@@ -3,6 +3,9 @@ import { Pet } from './pet.model';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment.development';
+
+const BACKEND_URL = environment.apiUrl + '/pets/';
 
 @Injectable({ providedIn: 'root' })
 export class PetsService {
@@ -18,7 +21,7 @@ export class PetsService {
   getPets() {
     // return [...this.pets];
     this.http
-      .get<{ message: string; pets: any }>('http://localhost:3000/api/pets')
+      .get<{ message: string; pets: any }>(BACKEND_URL)
       .pipe(
         map((petData) => {
           return petData.pets.map((pet) => {
@@ -45,12 +48,11 @@ export class PetsService {
   addPet(name: string, sex: string, age: number, breed: string) {
     const pet: Pet = { id: null, name: name, sex: sex, age: age, breed: breed };
     this.http
-      .post<{ message: string }>('http://localhost:3000/api/pets', pet)
+      .post<{ message: string }>(BACKEND_URL, pet)
       .subscribe((resData) => {
         console.log(resData.message);
         this.pets.push(pet);
         this.petsUpdate.next([...this.pets]);
-        console.log(this.pets);
       });
   }
 }

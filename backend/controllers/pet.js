@@ -28,20 +28,16 @@ exports.createPet = (req, res, next) => {
 };
 
 exports.getPets = (req, res, next) => {
-  //   const pets = [
-  //     { id: "dsfsdfds", name: "Max", sex: "M", age: 12, breed: "german shepard" },
-  //     { id: "fdsfdsf", name: "Alex", sex: "F", age: 5, breed: "german shepard" },
-  //     { id: "erettre", name: "Misty", sex: "F", age: 2, breed: "german shepard" },
-  //   ];
-  Pet.find().then((documents) => {
-    res.status(200).json({
-      message: "Pets fetched!!",
-      pets: documents,
+  Pet.find()
+    .then((documents) => {
+      res.status(200).json({
+        message: "Pets fetched!!",
+        pets: documents,
+      });
+    })
+    .catch((error) => {
+      res.status(500).json({
+        message: "Fetching posts failed!",
+      });
     });
-  });
-  // .catch((error) => {
-  //   res.status(500).json({
-  //     message: "Fetching posts failed!",
-  //   });
-  // });
 };
