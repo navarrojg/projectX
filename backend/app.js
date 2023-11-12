@@ -19,4 +19,10 @@ app.use((res, req, next) => {
   next();
 });
 
+app.post('/api/pets', (req,res,next)=>{
+  const post = req.body
+})
+
+app.use('/api/pets',petRoutes)
+
 module.exports = app;
