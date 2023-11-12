@@ -6,7 +6,20 @@ const path = require("path");
 const petRoutes = require("./routes/pets");
 
 const app = express();
-// L68uO1IMD5xwEHiq
+//
+
+mongoose
+  .connect(
+    "mongodb+srv://tarasbasket:" +
+      process.env.MONGO_ATLAS_PW +
+      "@pets.oe3t9we.mongodb.net/?retryWrites=true&w=majority"
+  )
+  .then(() => {
+    console.log("Connected to database!");
+  })
+  .catch(() => {
+    console.log("Connection failed");
+  });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
