@@ -15,7 +15,7 @@ export class PetsListComponent implements OnInit, OnDestroy {
   constructor(private petsService: PetsService) {}
 
   ngOnInit() {
-    this.pets = this.petsService.getPets();
+    this.petsService.getPets();
     this.petSub = this.petsService
       .getPetUpdateListener()
       .subscribe((pets: Pet[]) => {

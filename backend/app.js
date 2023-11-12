@@ -3,10 +3,15 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const path = require("path");
 
+const petRoutes = require("./routes/pets");
+
 const app = express();
 // L68uO1IMD5xwEHiq
 
-app.use((res, req, next) => {
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Headers",
@@ -19,10 +24,6 @@ app.use((res, req, next) => {
   next();
 });
 
-app.post('/api/pets', (req,res,next)=>{
-  const post = req.body
-})
-
-app.use('/api/pets',petRoutes)
+app.use("/api/pets", petRoutes);
 
 module.exports = app;
