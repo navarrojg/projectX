@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Pet } from './pet.model';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class PetsService {
@@ -17,9 +18,22 @@ export class PetsService {
   getPets() {
     // return [...this.pets];
     this.http
-      .get<{ message: string; pets: Pet[] }>('http://localhost:3000/api/pets')
-      .subscribe((petData) => {
-        this.pets = petData.pets;
+      .get<{ message: string; pets: any }>('http://localhost:3000/api/pets')
+      .pipe(
+        map((petData) => {
+          return petData.pets.map((pet) => {
+            return {
+              name: pet.name,
+              sex: pet.sex,
+              age: pet.age,
+              breed: pet.breed,
+              id: pet._id,
+            };
+          });
+        })
+      )
+      .subscribe((transformedPets) => {
+        this.pets = transformedPets;
         this.petsUpdate.next([...this.pets]);
       });
   }
