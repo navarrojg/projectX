@@ -19,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { HttpClient } from '@angular/common/http';
 import { PetDetailsComponent } from './pets/pet-details/pet-details.component';
@@ -46,6 +47,7 @@ import { PetDetailsComponent } from './pets/pet-details/pet-details.component';
     MatProgressSpinnerModule,
     MatDialogModule,
     MatSelectModule,
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
