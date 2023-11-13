@@ -41,3 +41,10 @@ exports.getPets = (req, res, next) => {
       });
     });
 };
+
+exports.deletePet = (req, res, next) => {
+  Pet.deleteOne({ _id: req.params.id }).then((result) => {
+    console.log(result);
+    res.status(200).json({ message: "Pet deleted!" });
+  });
+};

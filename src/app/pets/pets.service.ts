@@ -59,4 +59,13 @@ export class PetsService {
   getPet(index: number) {
     return this.pets[index];
   }
+
+  deletePet(petId: string) {
+    this.http.delete(BACKEND_URL + petId).subscribe(() => {
+      const updatedPets = this.pets.filter((pet) => pet.id !== petId);
+      this.pets = updatedPets;
+      this.petsUpdate.next([...this.pets]);
+      console.log('Pet deleted!');
+    });
+  }
 }
