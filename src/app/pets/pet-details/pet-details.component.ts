@@ -22,9 +22,6 @@ export class PetDetailsComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
       this.pet = this.petService.getPet(this.id);
-      console.log(this.id);
-      console.log(this.pet);
-      console.log(this.pet.name);
     });
   }
 

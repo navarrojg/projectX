@@ -19,7 +19,7 @@ exports.createPet = (req, res, next) => {
   // })
   // .catch((error) => {
   //   res.status(500).json({
-  //     message: "Creating post failed! :(",
+  //     message: "Creating pet failed! :(",
   //   });
   // });
 
@@ -37,14 +37,20 @@ exports.getPets = (req, res, next) => {
     })
     .catch((error) => {
       res.status(500).json({
-        message: "Fetching posts failed!",
+        message: "Fetching pet failed!",
       });
     });
 };
 
 exports.deletePet = (req, res, next) => {
-  Pet.deleteOne({ _id: req.params.id }).then((result) => {
-    console.log(result);
-    res.status(200).json({ message: "Pet deleted!" });
-  });
+  Pet.deleteOne({ _id: req.params.id })
+    .then((result) => {
+      console.log(result);
+      res.status(200).json({ message: "Pet deleted!" });
+    })
+    .catch((error) => {
+      res.status(500).json({
+        message: "Deleting pet failed!",
+      });
+    });
 };
