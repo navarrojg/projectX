@@ -12,7 +12,7 @@ mongoose
   .connect(
     "mongodb+srv://tarasbasket:" +
       process.env.MONGO_ATLAS_PW +
-      "@pets.oe3t9we.mongodb.net/?retryWrites=true&w=majority"
+      "@pets.oe3t9we.mongodb.net/node-angular?retryWrites=true&w=majority"
   )
   .then(() => {
     console.log("Connected to database!");

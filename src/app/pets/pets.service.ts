@@ -55,4 +55,8 @@ export class PetsService {
         this.petsUpdate.next([...this.pets]);
       });
   }
+
+  getPet(index: number) {
+    return this.pets[index];
+  }
 }
