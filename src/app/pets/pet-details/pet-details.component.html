@@ -13,7 +13,7 @@
     <div class="col-xs-12">
         <button mat-button [matMenuTriggerFor]="menu">Menu</button>
         <mat-menu #menu="matMenu">
-            <button mat-menu-item>Edit</button>
+            <button mat-menu-item (click)="onEditPet()">Edit</button>
             <button mat-menu-item (click)="onDeletePet(pet.id)">Delete</button>
         </mat-menu>
     </div>

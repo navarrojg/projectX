@@ -60,6 +60,8 @@ export class PetsService {
     return this.pets[index];
   }
 
+  
+
   deletePet(petId: string) {
     this.http.delete(BACKEND_URL + petId).subscribe(() => {
       const updatedPets = this.pets.filter((pet) => pet.id !== petId);
