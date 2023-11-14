@@ -60,14 +60,31 @@ export class PetsService {
     return this.pets[index];
   }
 
-  
-
   deletePet(petId: string) {
     this.http.delete(BACKEND_URL + petId).subscribe(() => {
       const updatedPets = this.pets.filter((pet) => pet.id !== petId);
       this.pets = updatedPets;
       this.petsUpdate.next([...this.pets]);
       console.log('Pet deleted!');
+    });
+  }
+
+  updatePet(
+    petId: string,
+    name: string,
+    sex: string,
+    age: number,
+    breed: string
+  ) {
+    const pet: Pet = {
+      id: petId,
+      name: name,
+      sex: sex,
+      age: age,
+      breed: breed,
+    };
+    this.http.put(BACKEND_URL + petId, pet).subscribe((response) => {
+      console.log(response);
     });
   }
 }

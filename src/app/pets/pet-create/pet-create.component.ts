@@ -24,17 +24,6 @@ export class PetCreateComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      if (paramMap.has('id')) {
-        this.mode = 'edit';
-        this.petId = paramMap.get('id');
-        this.pet = this.petsService.getPet(+this.petId);
-      } else {
-        this.mode = 'create';
-        this.petId = null;
-      }
-    });
-
     this.petForm = new FormGroup({
       name: new FormControl(null, {
         validators: [Validators.required, Validators.minLength(1)],
@@ -49,6 +38,25 @@ export class PetCreateComponent implements OnInit, OnDestroy {
         validators: [Validators.required],
       }),
     });
+
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      if (paramMap.has('id')) {
+        this.mode = 'edit';
+        this.petId = paramMap.get('id');
+        this.pet = this.petsService.getPet(+this.petId);
+        console.log(this.pet);
+        this.petForm.setValue({
+          // id: this.pet.id,
+          name: this.pet.name,
+          sex: this.pet.sex,
+          age: this.pet.age,
+          breed: this.pet.breed,
+        });
+      } else {
+        this.mode = 'create';
+        this.petId = null;
+      }
+    });
   }
 
   onSavePet() {
@@ -57,6 +65,14 @@ export class PetCreateComponent implements OnInit, OnDestroy {
     }
     if (this.mode === 'create') {
       this.petsService.addPet(
+        this.petForm.value.name,
+        this.petForm.value.sex,
+        this.petForm.value.age,
+        this.petForm.value.breed
+      );
+    } else {
+      this.petsService.updatePet(
+        this.petId,
         this.petForm.value.name,
         this.petForm.value.sex,
         this.petForm.value.age,

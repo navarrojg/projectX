@@ -54,3 +54,17 @@ exports.deletePet = (req, res, next) => {
       });
     });
 };
+
+exports.updatePet = (req, res, next) => {
+  const pet = new Pet({
+    _id: req.body.id,
+    name: req.body.name,
+    sex: req.body.sex,
+    age: req.body.age,
+    breed: req.body.breed,
+  });
+  Pet.updateOne({ _id: req.params.id }, pet).then((result) => {
+    console.log(result);
+    res.status(200).json({ message: "Update successfull!" });
+  });
+};
