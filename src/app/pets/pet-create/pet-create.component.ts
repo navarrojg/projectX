@@ -43,14 +43,24 @@ export class PetCreateComponent implements OnInit, OnDestroy {
       if (paramMap.has('id')) {
         this.mode = 'edit';
         this.petId = paramMap.get('id');
-        this.pet = this.petsService.getPet(+this.petId);
-        console.log(this.pet);
-        this.petForm.setValue({
-          // id: this.pet.id,
-          name: this.pet.name,
-          sex: this.pet.sex,
-          age: this.pet.age,
-          breed: this.pet.breed,
+        console.log(this.petId);
+        this.petsService.getPet(this.petId).subscribe((petData) => {
+          console.log(petData);
+          this.pet = {
+            id: petData._id,
+            name: petData.name,
+            sex: petData.sex,
+            age: petData.age,
+            breed: petData.breed,
+          };
+          console.log(this.pet);
+          this.petForm.setValue({
+            // id: this.pet.id,
+            name: this.pet.name,
+            sex: this.pet.sex,
+            age: this.pet.age,
+            breed: this.pet.breed,
+          });
         });
       } else {
         this.mode = 'create';

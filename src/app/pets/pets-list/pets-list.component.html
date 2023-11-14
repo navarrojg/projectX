@@ -1,5 +1,5 @@
 <div class="pets-list">
-    <mat-card class="example-card" *ngFor="let pet of pets; let i = index" [id]="i">
+    <mat-card class="example-card" *ngFor="let pet of pets" [id]="pet.id">
         <mat-card-header>
             <!-- <div mat-card-avatar class="example-header-image"></div> -->
             <img mat-card-avatar
@@ -11,7 +11,7 @@
         <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
         <mat-card-actions>
             <button mat-button type="button">👍</button>
-            <button mat-button type="button" [routerLink]="[i]">DETAILS</button>
+            <button mat-button type="button" [routerLink]="[pet.id]">DETAILS</button>
         </mat-card-actions>
     </mat-card>
 </div>

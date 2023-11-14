@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.post("", PetController.createPet);
 router.get("", PetController.getPets);
+router.get("/:id", PetController.getPet);
 router.delete("/:id", PetController.deletePet);
 router.put("/:id", PetController.updatePet);
 

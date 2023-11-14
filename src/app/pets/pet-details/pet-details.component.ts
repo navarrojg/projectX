@@ -10,7 +10,7 @@ import { PetsService } from '../pets.service';
 })
 export class PetDetailsComponent implements OnInit {
   pet: Pet;
-  id: number;
+  id: string;
 
   constructor(
     private router: Router,
@@ -20,8 +20,8 @@ export class PetDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      this.id = +params['id'];
-      this.pet = this.petService.getPet(this.id);
+      this.id = params['id'];
+      this.pet = this.petService.getPet1(this.id);
     });
   }
 

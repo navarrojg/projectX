@@ -56,8 +56,19 @@ export class PetsService {
       });
   }
 
-  getPet(index: number) {
-    return this.pets[index];
+  getPet1(id: string) {
+    // return this.pets[index];
+    return { ...this.pets.find((p) => p.id === id) };
+  }
+
+  getPet(id: string) {
+    return this.http.get<{
+      _id: string;
+      name: string;
+      sex: string;
+      age: number;
+      breed: string;
+    }>(BACKEND_URL + id);
   }
 
   deletePet(petId: string) {
@@ -84,7 +95,11 @@ export class PetsService {
       breed: breed,
     };
     this.http.put(BACKEND_URL + petId, pet).subscribe((response) => {
-      console.log(response);
+      const updatedPets = [...this.pets];
+      const oldPetIndex = updatedPets.findIndex((p) => p.id === pet.id);
+      updatedPets[oldPetIndex] = pet;
+      this.pets = updatedPets;
+      this.petsUpdate.next([...this.pets]);
     });
   }
 }

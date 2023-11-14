@@ -68,3 +68,13 @@ exports.updatePet = (req, res, next) => {
     res.status(200).json({ message: "Update successfull!" });
   });
 };
+
+exports.getPet = (req, res, next) => {
+  Pet.findById(req.params.id).then((pet) => {
+    if (pet) {
+      res.status(200).json(pet)
+    } else {
+      res.status(404).json({ message: "Pet not found" });
+    }
+  });
+};
