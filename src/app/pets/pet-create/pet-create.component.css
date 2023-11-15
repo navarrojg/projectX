@@ -5,3 +5,7 @@ mat-form-field {
 button {
   margin: 1em 2em;
 }
+
+input[type="file"] {
+  visibility: hidden;
+}
