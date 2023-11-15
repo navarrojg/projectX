@@ -11,14 +11,17 @@ import { Subscription } from 'rxjs';
 export class PetsListComponent implements OnInit, OnDestroy {
   pets: Pet[] = [];
   private petSub: Subscription;
+  isLoading = false;
 
   constructor(private petsService: PetsService) {}
 
   ngOnInit() {
+    this.isLoading = true;
     this.petsService.getPets();
     this.petSub = this.petsService
       .getPetUpdateListener()
       .subscribe((pets: Pet[]) => {
+        this.isLoading = false;
         this.pets = pets;
       });
   }

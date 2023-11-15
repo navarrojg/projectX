@@ -10,9 +10,10 @@ import { Pet } from '../pet.model';
   styleUrls: ['./pet-create.component.css'],
 })
 export class PetCreateComponent implements OnInit, OnDestroy {
+  // enteredTitle = '';
+  // enteredContent = '';
   petForm: FormGroup;
-  enteredTitle = '';
-  enteredContent = '';
+  isLoading = false;
   private mode = 'create';
   private petId: string;
   private pet: Pet;
@@ -43,9 +44,9 @@ export class PetCreateComponent implements OnInit, OnDestroy {
       if (paramMap.has('id')) {
         this.mode = 'edit';
         this.petId = paramMap.get('id');
-        console.log(this.petId);
+        this.isLoading = true;
         this.petsService.getPet(this.petId).subscribe((petData) => {
-          console.log(petData);
+          this.isLoading = false;
           this.pet = {
             id: petData._id,
             name: petData.name,
@@ -73,6 +74,7 @@ export class PetCreateComponent implements OnInit, OnDestroy {
     if (this.petForm.invalid) {
       return;
     }
+    this.isLoading = true;
     if (this.mode === 'create') {
       this.petsService.addPet(
         this.petForm.value.name,

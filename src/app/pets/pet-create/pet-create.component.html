@@ -1,6 +1,6 @@
 <mat-card>
-    <form (submit)="onSavePet()" [formGroup]="petForm">
-
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <form (submit)="onSavePet()" [formGroup]="petForm" *ngIf="!isLoading">
         <mat-form-field>
             <input matInput type="text" placeholder="Pet's name" formControlName="name">
             <mat-error *ngIf="petForm.get('name').invalid">Please enter pet's name.</mat-error>

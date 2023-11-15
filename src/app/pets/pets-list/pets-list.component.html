@@ -1,4 +1,5 @@
-<div class="pets-list">
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div class="pets-list" *ngIf="!isLoading && pets.length>0">
     <mat-card class="example-card" *ngFor="let pet of pets" [id]="pet.id">
         <mat-card-header>
             <!-- <div mat-card-avatar class="example-header-image"></div> -->
@@ -15,3 +16,4 @@
         </mat-card-actions>
     </mat-card>
 </div>
+<p class="info-text" *ngIf="pets.length<=0">There are no pets!</p>
