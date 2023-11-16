@@ -17,6 +17,7 @@ export class PetCreateComponent implements OnInit, OnDestroy {
   private mode = 'create';
   private petId: string;
   private pet: Pet;
+  imagePreview: string;
 
   constructor(
     private petsService: PetsService,
@@ -100,8 +101,11 @@ export class PetCreateComponent implements OnInit, OnDestroy {
     const file = (event.target as HTMLInputElement).files[0];
     this.petForm.patchValue({ image: file });
     this.petForm.get('image').updateValueAndValidity();
-    console.log(file);
-    console.log(this.petForm);
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result as string;
+    };
+    reader.readAsDataURL(file);
   }
 
   ngOnDestroy(): void {}
