@@ -38,6 +38,7 @@ export class PetCreateComponent implements OnInit, OnDestroy {
       breed: new FormControl(null, {
         validators: [Validators.required],
       }),
+      image: new FormControl(null, { validators: [Validators.required] }),
     });
 
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -93,6 +94,14 @@ export class PetCreateComponent implements OnInit, OnDestroy {
     }
     this.petForm.reset();
     this.router.navigate(['/']);
+  }
+
+  onImagePicked(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.petForm.patchValue({ image: file });
+    this.petForm.get('image').updateValueAndValidity();
+    console.log(file);
+    console.log(this.petForm);
   }
 
   ngOnDestroy(): void {}
