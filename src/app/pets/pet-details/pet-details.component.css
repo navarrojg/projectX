@@ -3,3 +3,8 @@ button {
   background-color: #7b1fa2;
   color: white;
 }
+
+img {
+  border-radius: 8px;
+  width: 100%;
+}
