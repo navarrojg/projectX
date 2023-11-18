@@ -6,7 +6,7 @@
             <img mat-card-avatar
                 src="https://img.freepik.com/premium-vector/creative-canine-logo-design-vector-dog-head-illustration-icon-pet-shop_950157-1962.jpg?w=2000"
                 alt="">
-            <mat-card-title>{{pet.name}}</mat-card-title>
+            <mat-card-title>{{pet.name | titlecase}}</mat-card-title>
             <mat-card-subtitle>{{pet.age}} years old</mat-card-subtitle>
         </mat-card-header>
         <img mat-card-image [src]="pet.imagePath" alt="Photo of a Shiba Inu">
