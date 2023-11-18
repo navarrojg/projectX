@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PetsService } from '../pets.service';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { Pet } from '../pet.model';
+import { mimeType } from './mime-type.validator';
 
 @Component({
   selector: 'app-pet-create',
@@ -39,7 +40,10 @@ export class PetCreateComponent implements OnInit, OnDestroy {
       breed: new FormControl(null, {
         validators: [Validators.required],
       }),
-      image: new FormControl(null, { validators: [Validators.required] }),
+      image: new FormControl(null, {
+        validators: [Validators.required],
+        asyncValidators: [mimeType],
+      }),
     });
 
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
