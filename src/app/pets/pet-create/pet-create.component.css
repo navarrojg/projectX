@@ -11,8 +11,8 @@ input[type="file"] {
 }
 
 .image-preview {
-  height: 5rem;
-  margin: 1rem 0;
+  height: 15rem;
+  margin: 1em 2em;
 }
 
 .image-preview img {

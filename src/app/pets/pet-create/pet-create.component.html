@@ -22,7 +22,7 @@
             <mat-error *ngIf="petForm.get('breed').invalid">Please enter pet's breed.</mat-error>
         </mat-form-field>
         <div class="image-preview" *ngIf="imagePreview!=='' && imagePreview">
-            <img [src]="" alt="petForm.value.name">
+            <img [src]="imagePreview" alt="petForm.value.name">
         </div>
         <div>
             <button mat-raised-button type="button" color="primary" (click)="filePicker.click()">Pick image</button>
