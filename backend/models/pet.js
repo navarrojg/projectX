@@ -5,6 +5,7 @@ const petSchema = mongoose.Schema({
   sex: { type: String, required: true },
   age: { type: Number, required: true },
   breed: { type: String, required: true },
+  imagePath: { type: String, required: true },
 });
 
 module.exports = mongoose.model("Pet", petSchema);

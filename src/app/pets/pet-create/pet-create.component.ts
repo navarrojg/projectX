@@ -59,6 +59,7 @@ export class PetCreateComponent implements OnInit, OnDestroy {
             sex: petData.sex,
             age: petData.age,
             breed: petData.breed,
+            imagePath: null,
           };
           console.log(this.pet);
           this.petForm.setValue({
@@ -95,7 +96,8 @@ export class PetCreateComponent implements OnInit, OnDestroy {
         this.petForm.value.name,
         this.petForm.value.sex,
         this.petForm.value.age,
-        this.petForm.value.breed
+        this.petForm.value.breed,
+        null
       );
     }
     this.petForm.reset();

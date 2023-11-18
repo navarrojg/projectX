@@ -31,6 +31,7 @@ export class PetsService {
               age: pet.age,
               breed: pet.breed,
               id: pet._id,
+              imagePath: pet.imagePath,
             };
           });
         })
@@ -55,14 +56,15 @@ export class PetsService {
     petData.append('image', image, name);
 
     this.http
-      .post<{ message: string; petId: string }>(BACKEND_URL, petData)
+      .post<{ message: string; pet: Pet }>(BACKEND_URL, petData)
       .subscribe((resData) => {
         const pet: Pet = {
-          id: resData.petId,
+          id: resData.pet.id,
           name: name,
           sex: sex,
           age: age,
           breed: breed,
+          imagePath: resData.pet.imagePath,
         };
         console.log(resData.message);
         this.pets.push(pet);
@@ -99,7 +101,8 @@ export class PetsService {
     name: string,
     sex: string,
     age: number,
-    breed: string
+    breed: string,
+    image: File
   ) {
     const pet: Pet = {
       id: petId,
@@ -107,6 +110,7 @@ export class PetsService {
       sex: sex,
       age: age,
       breed: breed,
+      imagePath: null,
     };
     this.http.put(BACKEND_URL + petId, pet).subscribe((response) => {
       const updatedPets = [...this.pets];
