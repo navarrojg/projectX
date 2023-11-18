@@ -45,11 +45,25 @@ export class PetsService {
     return this.petsUpdate.asObservable();
   }
 
-  addPet(name: string, sex: string, age: number, breed: string) {
-    const pet: Pet = { id: null, name: name, sex: sex, age: age, breed: breed };
+  addPet(name: string, sex: string, age: any, breed: string, image: File) {
+    // const pet: Pet = { id: null, name: name, sex: sex, age: age, breed: breed };
+    const petData = new FormData();
+    petData.append('name', name);
+    petData.append('sex', sex);
+    petData.append('age', age);
+    petData.append('breed', breed);
+    petData.append('image', image, name);
+
     this.http
-      .post<{ message: string }>(BACKEND_URL, pet)
+      .post<{ message: string; petId: string }>(BACKEND_URL, petData)
       .subscribe((resData) => {
+        const pet: Pet = {
+          id: resData.petId,
+          name: name,
+          sex: sex,
+          age: age,
+          breed: breed,
+        };
         console.log(resData.message);
         this.pets.push(pet);
         this.petsUpdate.next([...this.pets]);
