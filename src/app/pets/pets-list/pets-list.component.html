@@ -9,7 +9,7 @@
             <mat-card-title>{{pet.name}}</mat-card-title>
             <mat-card-subtitle>{{pet.age}} years old</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <img mat-card-image [src]="pet.imagePath" alt="Photo of a Shiba Inu">
         <mat-card-actions>
             <button mat-mini-fab matTooltip="Accent" color="accent" aria-label="Example mini fab with a heart icon">
                 <mat-icon>favorite</mat-icon>
