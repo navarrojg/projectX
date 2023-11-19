@@ -36,7 +36,7 @@ export class PetsListComponent implements OnInit, OnDestroy {
     const catAvatar =
       'https://www.creativefabrica.com/wp-content/uploads/2021/01/26/Cat-Icon-Graphics-8071439-1.jpg';
     const unkownAvatar =
-      'https://cdn.icon-icons.com/icons2/2518/PNG/512/question_mark_icon_151137.png';
+      'https://icons.veryicon.com/png/o/miscellaneous/mobile-aone/question-mark-12.png';
     const horseAvatar =
       'https://st5.depositphotos.com/66293462/64473/v/450/depositphotos_644734704-stock-illustration-vector-logo-horse-black-white.jpg';
     const turtleAvatar =

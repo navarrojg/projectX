@@ -7,3 +7,23 @@ button {
 img {
   border-radius: 8px;
 }
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* flex-direction: column; */
+}
+
+.details {
+  margin: 0 2em;
+  width: 40%;
+}
+
+.petDetails {
+  font-size: 2rem;
+}
+
+h1 {
+  font-size: 3rem;
+}

@@ -1,39 +1,25 @@
-<div class="row">
+<div class="main">
+
     <div>
         <img [src]="pet.imagePath" alt="pet.name" style="max-height: 300px;">
     </div>
-</div>
 
-<div class="row">
-    <div>
-        <h1>{{pet.name | uppercase}}</h1>
-    </div>
-</div>
-<div class="row" style="margin-bottom: 20px;">
-    <div>
-        <button mat-button [matMenuTriggerFor]="menu">Menu</button>
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="onEditPet()">Edit</button>
-            <button mat-menu-item (click)="onDeletePet(pet.id)">Delete</button>
-        </mat-menu>
-    </div>
-</div>
+    <div class="details">
 
-<div style="background-color: #ffffff; margin-bottom: 10px; padding: 10px; border-radius: 8px;">
-    <div class="row">
-        <div>
+        <div style="margin-bottom: 20px;">
+            <h1>{{pet.name | uppercase}}</h1>
+            <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="onEditPet()">Edit</button>
+                <button mat-menu-item (click)="onDeletePet(pet.id)">Delete</button>
+            </mat-menu>
+        </div>
+
+        <div class="petDetails"
+            style="background-color: #ffffff; margin-bottom: 10px; padding: 10px; border-radius: 8px;">
             <p>Sex: {{pet.sex}}</p>
-        </div>
-    </div>
-    <div class="row">
-        <div>
             <p>Age: {{pet.age}}</p>
+            <p>Breed: {{pet.breed | lowercase}}</p>
         </div>
     </div>
-    <div class="row">
-        <div>
-            <p>Breed: {{pet.breed}}</p>
-        </div>
-    </div>
-
 </div>
