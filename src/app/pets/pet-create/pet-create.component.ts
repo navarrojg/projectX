@@ -61,7 +61,6 @@ export class PetCreateComponent implements OnInit, OnDestroy {
             breed: petData.breed,
             imagePath: petData.imagePath,
           };
-          console.log(this.pet);
           this.petForm.setValue({
             name: this.pet.name,
             sex: this.pet.sex,
@@ -101,7 +100,6 @@ export class PetCreateComponent implements OnInit, OnDestroy {
       );
     }
     this.petForm.reset();
-    this.router.navigate(['/']);
   }
 
   onImagePicked(event: Event) {

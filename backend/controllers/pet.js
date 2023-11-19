@@ -76,7 +76,7 @@ exports.updatePet = (req, res, next) => {
   });
   Pet.updateOne({ _id: req.params.id }, pet).then((result) => {
     console.log(result);
-    res.status(200).json({ message: "Update successfull!", pet: pet });
+    res.status(200).json({ message: "Update successfull!" });
   });
 };
 

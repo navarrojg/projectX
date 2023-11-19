@@ -3,13 +3,11 @@
     <mat-card class="example-card" *ngFor="let pet of pets" [id]="pet.id">
         <mat-card-header>
             <!-- <div mat-card-avatar class="example-header-image"></div> -->
-            <img mat-card-avatar
-                src="https://img.freepik.com/premium-vector/creative-canine-logo-design-vector-dog-head-illustration-icon-pet-shop_950157-1962.jpg?w=2000"
-                alt="">
+            <img mat-card-avatar [src]="petIcon(pet.breed)" alt="pet.breed">
             <mat-card-title>{{pet.name | titlecase}}</mat-card-title>
             <mat-card-subtitle>{{pet.age}} years old</mat-card-subtitle>
         </mat-card-header>
-        <img class="profile-photo" mat-card-image [src]="pet.imagePath" alt="Photo of a Shiba Inu">
+        <img class="profile-photo" mat-card-image [src]="pet.imagePath" [alt]="pet.name">
         <mat-card-actions>
             <button mat-mini-fab matTooltip="Accent" color="accent" aria-label="Example mini fab with a heart icon">
                 <mat-icon>favorite</mat-icon>

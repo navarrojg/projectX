@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment.development';
+import { Router } from '@angular/router';
 
 const BACKEND_URL = environment.apiUrl + '/pets/';
 
@@ -16,7 +17,7 @@ export class PetsService {
   ];
   private petsUpdate = new Subject<Pet[]>();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   getPets() {
     // return [...this.pets];
@@ -69,6 +70,7 @@ export class PetsService {
         console.log(resData.message);
         this.pets.push(pet);
         this.petsUpdate.next([...this.pets]);
+        this.router.navigate(['/']);
       });
   }
 
@@ -126,9 +128,6 @@ export class PetsService {
     }
 
     this.http.put(BACKEND_URL + id, petData).subscribe((response) => {
-      console.log('-----------');
-      console.log(response);
-      console.log('-----------');
       const updatedPets = [...this.pets];
       const oldPetIndex = updatedPets.findIndex((p) => p.id === id);
       const pet: Pet = {
@@ -142,6 +141,7 @@ export class PetsService {
       updatedPets[oldPetIndex] = pet;
       this.pets = updatedPets;
       this.petsUpdate.next([...this.pets]);
+      this.router.navigate(['/']);
     });
   }
 }
