@@ -2,6 +2,11 @@
   margin: 1em;
   background-color: #7b1fa2;
   width: 200px;
+  transition: transform 0.5s;
+}
+
+.example-card:hover {
+  transform: scale(1.1);
 }
 
 .example-header-image {
