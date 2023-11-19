@@ -84,6 +84,7 @@ export class PetsService {
       sex: string;
       age: number;
       breed: string;
+      imagePath: string;
     }>(BACKEND_URL + id);
   }
 
@@ -97,24 +98,47 @@ export class PetsService {
   }
 
   updatePet(
-    petId: string,
+    id: string,
     name: string,
     sex: string,
-    age: number,
+    age: any,
     breed: string,
-    image: File
+    image: File | string
   ) {
-    const pet: Pet = {
-      id: petId,
-      name: name,
-      sex: sex,
-      age: age,
-      breed: breed,
-      imagePath: null,
-    };
-    this.http.put(BACKEND_URL + petId, pet).subscribe((response) => {
+    let petData: Pet | FormData;
+    if (typeof image === 'object') {
+      petData = new FormData();
+      petData.append('id', id);
+      petData.append('name', name);
+      petData.append('sex', sex);
+      petData.append('age', age);
+      petData.append('breed', breed);
+      petData.append('image', image, name);
+    } else {
+      petData = {
+        id: id,
+        name: name,
+        sex: sex,
+        age: age,
+        breed: breed,
+        imagePath: image,
+      };
+    }
+
+    this.http.put(BACKEND_URL + id, petData).subscribe((response) => {
+      console.log('-----------');
+      console.log(response);
+      console.log('-----------');
       const updatedPets = [...this.pets];
-      const oldPetIndex = updatedPets.findIndex((p) => p.id === pet.id);
+      const oldPetIndex = updatedPets.findIndex((p) => p.id === id);
+      const pet: Pet = {
+        id: id,
+        name: name,
+        sex: sex,
+        age: age,
+        breed: breed,
+        imagePath: '',
+      };
       updatedPets[oldPetIndex] = pet;
       this.pets = updatedPets;
       this.petsUpdate.next([...this.pets]);

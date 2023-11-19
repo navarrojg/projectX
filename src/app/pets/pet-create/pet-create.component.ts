@@ -16,7 +16,7 @@ export class PetCreateComponent implements OnInit, OnDestroy {
   petForm: FormGroup;
   isLoading = false;
   private mode = 'create';
-  private petId: string;
+  private id: string;
   private pet: Pet;
   imagePreview: string;
 
@@ -49,9 +49,9 @@ export class PetCreateComponent implements OnInit, OnDestroy {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('id')) {
         this.mode = 'edit';
-        this.petId = paramMap.get('id');
+        this.id = paramMap.get('id');
         this.isLoading = true;
-        this.petsService.getPet(this.petId).subscribe((petData) => {
+        this.petsService.getPet(this.id).subscribe((petData) => {
           this.isLoading = false;
           this.pet = {
             id: petData._id,
@@ -59,20 +59,20 @@ export class PetCreateComponent implements OnInit, OnDestroy {
             sex: petData.sex,
             age: petData.age,
             breed: petData.breed,
-            imagePath: null,
+            imagePath: petData.imagePath,
           };
           console.log(this.pet);
           this.petForm.setValue({
-            // id: this.pet.id,
             name: this.pet.name,
             sex: this.pet.sex,
             age: this.pet.age,
             breed: this.pet.breed,
+            image: this.pet.imagePath,
           });
         });
       } else {
         this.mode = 'create';
-        this.petId = null;
+        this.id = null;
       }
     });
   }
@@ -92,12 +92,12 @@ export class PetCreateComponent implements OnInit, OnDestroy {
       );
     } else {
       this.petsService.updatePet(
-        this.petId,
+        this.id,
         this.petForm.value.name,
         this.petForm.value.sex,
         this.petForm.value.age,
         this.petForm.value.breed,
-        null
+        this.petForm.value.image
       );
     }
     this.petForm.reset();

@@ -28,3 +28,7 @@ mat-card-actions {
 mat-card-title {
   color: whitesmoke;
 }
+
+.profile-photo {
+  height: 140px;
+}
