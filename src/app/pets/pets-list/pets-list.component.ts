@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PetsService } from '../pets.service';
 import { Pet } from '../pet.model';
 import { Subscription } from 'rxjs';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-pets-list',
@@ -12,6 +13,9 @@ export class PetsListComponent implements OnInit, OnDestroy {
   pets: Pet[] = [];
   private petSub: Subscription;
   isLoading = false;
+  totalPets = 10;
+  petsPerPage = 5;
+  petSizeOptions = [1, 2, 5, 10];
 
   constructor(private petsService: PetsService) {}
 
@@ -25,6 +29,8 @@ export class PetsListComponent implements OnInit, OnDestroy {
         this.pets = pets;
       });
   }
+
+  onChengedPage(pageData: PageEvent) {}
 
   petIcon(breed: string) {
     const petType = breed;

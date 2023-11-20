@@ -20,6 +20,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { HttpClient } from '@angular/common/http';
 import { PetDetailsComponent } from './pets/pet-details/pet-details.component';
@@ -48,6 +49,7 @@ import { PetDetailsComponent } from './pets/pet-details/pet-details.component';
     MatDialogModule,
     MatSelectModule,
     MatMenuModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
