@@ -31,7 +31,13 @@ exports.createPet = (req, res, next) => {
 };
 
 exports.getPets = (req, res, next) => {
-  Pet.find()
+  const pageSize = +req.query.pagesize;
+  const currentPage = +req.query.page;
+  const petQuery = Pet.find();
+  if (pageSize && currentPage) {
+    petQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
+  }
+  petQuery
     .then((documents) => {
       res.status(200).json({
         message: "Pets fetched!!",

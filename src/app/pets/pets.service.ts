@@ -19,10 +19,10 @@ export class PetsService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  getPets() {
-    // return [...this.pets];
+  getPets(petsPerPage: number, currentPage: number) {
+    const queryParams = `?pagesize=${petsPerPage}&page=${currentPage}`;
     this.http
-      .get<{ message: string; pets: any }>(BACKEND_URL)
+      .get<{ message: string; pets: any }>(BACKEND_URL+queryParams)
       .pipe(
         map((petData) => {
           return petData.pets.map((pet) => {

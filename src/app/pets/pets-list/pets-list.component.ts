@@ -15,13 +15,14 @@ export class PetsListComponent implements OnInit, OnDestroy {
   isLoading = false;
   totalPets = 10;
   petsPerPage = 5;
-  petSizeOptions = [1, 2, 5, 10];
+  currentPage = 1;
+  petSizeOptions = [1, 3, 5, 10];
 
   constructor(private petsService: PetsService) {}
 
   ngOnInit() {
     this.isLoading = true;
-    this.petsService.getPets();
+    this.petsService.getPets(this.petsPerPage, this.currentPage);
     this.petSub = this.petsService
       .getPetUpdateListener()
       .subscribe((pets: Pet[]) => {
@@ -30,7 +31,11 @@ export class PetsListComponent implements OnInit, OnDestroy {
       });
   }
 
-  onChengedPage(pageData: PageEvent) {}
+  onChengedPage(pageData: PageEvent) {
+    this.currentPage = pageData.pageIndex + 1;
+    this.petsPerPage = pageData.pageSize;
+    this.petsService.getPets(this.petsPerPage, this.currentPage);
+  }
 
   petIcon(breed: string) {
     const petType = breed;
