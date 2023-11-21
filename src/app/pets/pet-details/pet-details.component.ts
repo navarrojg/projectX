@@ -26,7 +26,7 @@ export class PetDetailsComponent implements OnInit {
   }
 
   onDeletePet(petId: string) {
-    this.petService.deletePet(petId);
+    this.petService.deletePet(petId).subscribe(()=>{})
     this.router.navigate(['/pets']);
   }
 

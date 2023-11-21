@@ -34,14 +34,20 @@ exports.getPets = (req, res, next) => {
   const pageSize = +req.query.pagesize;
   const currentPage = +req.query.page;
   const petQuery = Pet.find();
+  let fetchedPets;
   if (pageSize && currentPage) {
     petQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
   }
   petQuery
     .then((documents) => {
+      fetchedPets = documents;
+      return Pet.count();
+    })
+    .then((count) => {
       res.status(200).json({
         message: "Pets fetched!!",
-        pets: documents,
+        pets: fetchedPets,
+        maxPets: count,
       });
     })
     .catch((error) => {

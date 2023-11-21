@@ -32,6 +32,7 @@ export class PetsListComponent implements OnInit, OnDestroy {
   }
 
   onChengedPage(pageData: PageEvent) {
+    this.isLoading = true;
     this.currentPage = pageData.pageIndex + 1;
     this.petsPerPage = pageData.pageSize;
     this.petsService.getPets(this.petsPerPage, this.currentPage);
