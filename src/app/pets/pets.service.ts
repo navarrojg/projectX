@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment.development';
 import { Router } from '@angular/router';
 
 const BACKEND_URL = environment.apiUrl + '/pets/';
+const BACKEND_URL_WITHOUT_SLASH = environment.apiUrl + '/pets';
 
 @Injectable({ providedIn: 'root' })
 export class PetsService {
@@ -23,7 +24,7 @@ export class PetsService {
     const queryParams = `?pagesize=${petsPerPage}&page=${currentPage}`;
     this.http
       .get<{ message: string; pets: any; maxPets: number }>(
-        BACKEND_URL + queryParams
+        BACKEND_URL_WITHOUT_SLASH + queryParams
       )
       .pipe(
         map((petData) => {
@@ -99,13 +100,13 @@ export class PetsService {
   }
 
   deletePet(petId: string) {
-    return this.http.delete(BACKEND_URL + petId);
-    // .subscribe(() => {
-    //   const updatedPets = this.pets.filter((pet) => pet.id !== petId);
-    //   this.pets = updatedPets;
-    //   this.petsUpdate.next([...this.pets]);
-    //   console.log('Pet deleted!');
-    // });
+    this.http.delete(BACKEND_URL + petId).subscribe(() => {
+      // const updatedPets = this.pets.filter((pet) => pet.id !== petId);
+      // this.pets = updatedPets;
+      // this.petsUpdate.next([...this.pets]);
+      console.log('Pet deleted!');
+      this.router.navigate(['/pets']);
+    });
   }
 
   updatePet(

@@ -52,7 +52,7 @@ exports.getPets = (req, res, next) => {
     })
     .catch((error) => {
       res.status(500).json({
-        message: "Fetching pet failed!",
+        message: "Fetching pets failed!",
       });
     });
 };
