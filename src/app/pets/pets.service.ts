@@ -7,7 +7,6 @@ import { environment } from 'src/environments/environment.development';
 import { Router } from '@angular/router';
 
 const BACKEND_URL = environment.apiUrl + '/pets/';
-const BACKEND_URL_WITHOUT_SLASH = environment.apiUrl + '/pets';
 
 @Injectable({ providedIn: 'root' })
 export class PetsService {
@@ -16,39 +15,31 @@ export class PetsService {
     // { name: 'Alex', sex: 'F', age: 5, breed: 'german shepard' },
     // { name: 'Misty', sex: 'F', age: 2, breed: 'german shepard' },
   ];
-  private petsUpdate = new Subject<{ pets: Pet[]; petsCount: number }>();
+  private petsUpdate = new Subject<Pet[]>();
 
   constructor(private http: HttpClient, private router: Router) {}
 
   getPets(petsPerPage: number, currentPage: number) {
     const queryParams = `?pagesize=${petsPerPage}&page=${currentPage}`;
     this.http
-      .get<{ message: string; pets: any; maxPets: number }>(
-        BACKEND_URL_WITHOUT_SLASH + queryParams
-      )
+      .get<{ message: string; pets: any }>(BACKEND_URL + queryParams)
       .pipe(
         map((petData) => {
-          return {
-            pets: petData.pets.map((pet) => {
-              return {
-                name: pet.name,
-                sex: pet.sex,
-                age: pet.age,
-                breed: pet.breed,
-                id: pet._id,
-                imagePath: pet.imagePath,
-              };
-            }),
-            maxPets: petData.maxPets,
-          };
+          return petData.pets.map((pet) => {
+            return {
+              name: pet.name,
+              sex: pet.sex,
+              age: pet.age,
+              breed: pet.breed,
+              id: pet._id,
+              imagePath: pet.imagePath,
+            };
+          });
         })
       )
-      .subscribe((transformedPetsData) => {
-        this.pets = transformedPetsData.pets;
-        this.petsUpdate.next({
-          pets: [...this.pets],
-          petsCount: transformedPetsData.maxPets,
-        });
+      .subscribe((transformedPets) => {
+        this.pets = transformedPets;
+        this.petsUpdate.next([...this.pets]);
       });
   }
 
@@ -68,17 +59,17 @@ export class PetsService {
     this.http
       .post<{ message: string; pet: Pet }>(BACKEND_URL, petData)
       .subscribe((resData) => {
-        // const pet: Pet = {
-        //   id: resData.pet.id,
-        //   name: name,
-        //   sex: sex,
-        //   age: age,
-        //   breed: breed,
-        //   imagePath: resData.pet.imagePath,
-        // };
-        // console.log(resData.message);
-        // this.pets.push(pet);
-        // this.petsUpdate.next([...this.pets]);
+        const pet: Pet = {
+          id: resData.pet.id,
+          name: name,
+          sex: sex,
+          age: age,
+          breed: breed,
+          imagePath: resData.pet.imagePath,
+        };
+        console.log(resData.message);
+        this.pets.push(pet);
+        this.petsUpdate.next([...this.pets]);
         this.router.navigate(['/']);
       });
   }
@@ -101,11 +92,10 @@ export class PetsService {
 
   deletePet(petId: string) {
     this.http.delete(BACKEND_URL + petId).subscribe(() => {
-      // const updatedPets = this.pets.filter((pet) => pet.id !== petId);
-      // this.pets = updatedPets;
-      // this.petsUpdate.next([...this.pets]);
+      const updatedPets = this.pets.filter((pet) => pet.id !== petId);
+      this.pets = updatedPets;
+      this.petsUpdate.next([...this.pets]);
       console.log('Pet deleted!');
-      this.router.navigate(['/pets']);
     });
   }
 
@@ -136,20 +126,21 @@ export class PetsService {
         imagePath: image,
       };
     }
+
     this.http.put(BACKEND_URL + id, petData).subscribe((response) => {
-      // const updatedPets = [...this.pets];
-      // const oldPetIndex = updatedPets.findIndex((p) => p.id === id);
-      // const pet: Pet = {
-      //   id: id,
-      //   name: name,
-      //   sex: sex,
-      //   age: age,
-      //   breed: breed,
-      //   imagePath: '',
-      // };
-      // updatedPets[oldPetIndex] = pet;
-      // this.pets = updatedPets;
-      // this.petsUpdate.next([...this.pets]);
+      const updatedPets = [...this.pets];
+      const oldPetIndex = updatedPets.findIndex((p) => p.id === id);
+      const pet: Pet = {
+        id: id,
+        name: name,
+        sex: sex,
+        age: age,
+        breed: breed,
+        imagePath: '',
+      };
+      updatedPets[oldPetIndex] = pet;
+      this.pets = updatedPets;
+      this.petsUpdate.next([...this.pets]);
       this.router.navigate(['/']);
     });
   }
