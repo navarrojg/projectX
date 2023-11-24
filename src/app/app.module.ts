@@ -24,6 +24,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { HttpClient } from '@angular/common/http';
 import { PetDetailsComponent } from './pets/pet-details/pet-details.component';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { PetDetailsComponent } from './pets/pet-details/pet-details.component';
     PetsListComponent,
     PetCreateComponent,
     PetDetailsComponent,
+    LoginComponent,
+    SignupComponent,
   ],
   imports: [
     CommonModule,
