@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 
@@ -49,6 +49,7 @@ import { SignupComponent } from './auth/signup/signup.component';
     MatCardModule,
     MatInputModule,
     ReactiveFormsModule,
+    FormsModule,
     MatProgressSpinnerModule,
     MatDialogModule,
     MatSelectModule,
