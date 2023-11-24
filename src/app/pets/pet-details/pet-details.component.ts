@@ -26,8 +26,7 @@ export class PetDetailsComponent implements OnInit {
   }
 
   onDeletePet(petId: string) {
-    this.petService.deletePet(petId)
-
+    this.petService.deletePet(petId);
   }
 
   onEditPet() {

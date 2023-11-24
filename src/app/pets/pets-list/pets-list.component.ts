@@ -13,10 +13,10 @@ export class PetsListComponent implements OnInit, OnDestroy {
   pets: Pet[] = [];
   private petSub: Subscription;
   isLoading = false;
-  totalPets = 10;
-  petsPerPage = 5;
+  totalPets = 0;
+  petsPerPage = 4;
   currentPage = 1;
-  petSizeOptions = [1, 3, 5, 10];
+  petSizeOptions = [3, 4, 5, 10];
 
   constructor(private petsService: PetsService) {}
 
@@ -25,13 +25,15 @@ export class PetsListComponent implements OnInit, OnDestroy {
     this.petsService.getPets(this.petsPerPage, this.currentPage);
     this.petSub = this.petsService
       .getPetUpdateListener()
-      .subscribe((pets: Pet[]) => {
+      .subscribe((petData: { pets: Pet[]; petsCount: number }) => {
         this.isLoading = false;
-        this.pets = pets;
+        this.pets = petData.pets;
+        this.totalPets = petData.petsCount;
       });
   }
 
   onChengedPage(pageData: PageEvent) {
+    this.isLoading = true;
     this.currentPage = pageData.pageIndex + 1;
     this.petsPerPage = pageData.pageSize;
     this.petsService.getPets(this.petsPerPage, this.currentPage);
