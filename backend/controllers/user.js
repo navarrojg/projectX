@@ -21,4 +21,37 @@ exports.createUser = (req, res, next) => {
   });
 };
 
-exports.userLogin = (req, res, next) => {};
+exports.userLogin = (req, res, next) => {
+  let fetchedUser;
+  User.findOne({ email: req.body.email })
+    .then((user) => {
+      if (!user) {
+        return res.status(404).json({
+          message: "Auth failed!",
+        });
+      }
+      fetchedUser = user;
+      return bcrypt.compare(req.body.password, user.password);
+    })
+    .then((result) => {
+      if (!result) {
+        return res.status(404).json({
+          message: "Auth failed!",
+        });
+      }
+      const token = jwt.sign(
+        { email: fetchedUser.email, userId: fetchedUser._id },
+        "thats_what_she_said_or_he_said",
+        { expiresIn: "1h" }
+      );
+      res.status(200).json({
+        token: token,
+      });
+    })
+    .catch((err) => {
+      res.staus(401).json({
+        message: "Auth failed!",
+        err: err,
+      });
+    });
+};
