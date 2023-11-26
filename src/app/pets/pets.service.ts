@@ -21,7 +21,7 @@ export class PetsService {
   constructor(private http: HttpClient, private router: Router) {}
 
   getPets(petsPerPage: number, currentPage: number) {
-    const queryParams = `?pagesize=${petsPerPage}&page=${currentPage}`;
+    const queryParams = `?pageSize=${petsPerPage}&page=${currentPage}`;
     this.http
       .get<{ message: string; pets: any; maxPets: number }>(
         BACKEND_URL + queryParams

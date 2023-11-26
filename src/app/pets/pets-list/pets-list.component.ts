@@ -27,12 +27,12 @@ export class PetsListComponent implements OnInit, OnDestroy {
       .getPetUpdateListener()
       .subscribe((petData: { pets: Pet[]; petsCount: number }) => {
         this.isLoading = false;
-        this.pets = petData.pets;
         this.totalPets = petData.petsCount;
+        this.pets = petData.pets;
       });
   }
 
-  onChengedPage(pageData: PageEvent) {
+  onChangedPage(pageData: PageEvent) {
     this.isLoading = true;
     this.currentPage = pageData.pageIndex + 1;
     this.petsPerPage = pageData.pageSize;

@@ -31,7 +31,7 @@ exports.createPet = (req, res, next) => {
 };
 
 exports.getPets = (req, res, next) => {
-  const pageSize = +req.query.pagesize;
+  const pageSize = +req.query.pageSize;
   const currentPage = +req.query.page;
   const petQuery = Pet.find();
   let fetchedPets;
@@ -49,12 +49,12 @@ exports.getPets = (req, res, next) => {
         pets: fetchedPets,
         maxPets: count,
       });
+    })
+    .catch((error) => {
+      res.status(500).json({
+        message: "Fetching pet failed!",
+      });
     });
-  // .catch((error) => {
-  //   res.status(500).json({
-  //     message: "Fetching pet failed!",
-  //   });
-  // });
 };
 
 exports.deletePet = (req, res, next) => {
