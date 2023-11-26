@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment.development';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 const BACKEND_URL = environment.apiUrl + '/pets/';
 
