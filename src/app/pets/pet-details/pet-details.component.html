@@ -8,7 +8,7 @@
 
         <div style="margin-bottom: 20px;">
             <h1>{{pet.name | uppercase}}</h1>
-            <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+            <button *ngIf="userIsAuthenticated" mat-button [matMenuTriggerFor]="menu">Menu</button>
             <mat-menu #menu="matMenu">
                 <button mat-menu-item (click)="onEditPet()">Edit</button>
                 <button mat-menu-item (click)="onDeletePet(pet.id)">Delete</button>

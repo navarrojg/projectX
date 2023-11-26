@@ -11,6 +11,7 @@ export class AuthService {
   BACKEND_URL_LOGIN = environment.apiUrl + '/user/login';
   private token: string;
   private authStatusListener = new Subject<boolean>();
+  private isAuthenticated = false;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -20,6 +21,16 @@ export class AuthService {
 
   getAuthStatusListener() {
     return this.authStatusListener.asObservable();
+  }
+
+  getIsAuth() {
+    return this.isAuthenticated;
+  }
+
+  logout() {
+    this.token = null;
+    this.isAuthenticated = false;
+    this.authStatusListener.next(false);
   }
 
   createUser(email: string, password: string) {
@@ -37,8 +48,11 @@ export class AuthService {
       .subscribe((response) => {
         const token = response.token;
         this.token = token;
-        this.authStatusListener.next(true);
-        this.router.navigate(['/']);
+        if (token) {
+          this.authStatusListener.next(true);
+          this.isAuthenticated = true;
+          this.router.navigate(['/']);
+        }
       });
   }
 }
