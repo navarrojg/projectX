@@ -65,5 +65,14 @@ export class AuthService {
     clearTimeout(this.tokenTimer);
     this.router.navigate(['/']);
   }
-  
+
+  private saveAuthData(token: string, expirationDate: Date) {
+    localStorage.setItem('token', token);
+    localStorage.setItem('expiration', expirationDate.toISOString());
+  }
+
+  private clearAuthDate() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('expiration');
+  }
 }
