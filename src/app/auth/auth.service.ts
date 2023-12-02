@@ -53,6 +53,11 @@ export class AuthService {
           }, expiresInDuration * 1000);
           this.authStatusListener.next(true);
           this.isAuthenticated = true;
+          const now = new Date();
+          const expirationDate = new Date(
+            now.getTime() + expiresInDuration * 1000
+          );
+          this.saveAuthData(token, expirationDate);
           this.router.navigate(['/']);
         }
       });
@@ -63,6 +68,7 @@ export class AuthService {
     this.isAuthenticated = false;
     this.authStatusListener.next(false);
     clearTimeout(this.tokenTimer);
+    this.clearAuthDate();
     this.router.navigate(['/']);
   }
 
