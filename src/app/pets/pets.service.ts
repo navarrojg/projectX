@@ -37,6 +37,7 @@ export class PetsService {
                 breed: pet.breed,
                 id: pet._id,
                 imagePath: pet.imagePath,
+                creator: pet.creator,
               };
             }),
             maxPets: petData.maxPets,
