@@ -5,4 +5,5 @@ export interface Pet {
   age: number;
   breed: string;
   imagePath: string;
+  creator: string;
 }

@@ -97,6 +97,7 @@ export class PetsService {
       age: number;
       breed: string;
       imagePath: string;
+      creator: string;
     }>(BACKEND_URL + id);
   }
 
@@ -135,6 +136,7 @@ export class PetsService {
         age: age,
         breed: breed,
         imagePath: image,
+        creator: null,
       };
     }
 

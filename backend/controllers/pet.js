@@ -76,12 +76,10 @@ exports.deletePet = (req, res, next) => {
 
 exports.updatePet = (req, res, next) => {
   let imagePath = req.body.imagePath;
-
   if (req.file) {
     const url = req.protocol + "://" + req.get("host");
     imagePath = url + "/images/pets-images/" + req.file.filename;
   }
-
   const pet = new Pet({
     _id: req.body.id,
     name: req.body.name,
@@ -89,6 +87,7 @@ exports.updatePet = (req, res, next) => {
     age: req.body.age,
     breed: req.body.breed,
     imagePath: imagePath,
+    creator: req.userData.userId,
   });
   Pet.updateOne({ _id: req.params.id, creator: req.userData.userId }, pet).then(
     (result) => {

@@ -60,6 +60,7 @@ export class PetCreateComponent implements OnInit, OnDestroy {
             age: petData.age,
             breed: petData.breed,
             imagePath: petData.imagePath,
+            creator: petData.creator,
           };
           this.petForm.setValue({
             name: this.pet.name,
