@@ -59,10 +59,13 @@ exports.getPets = (req, res, next) => {
 };
 
 exports.deletePet = (req, res, next) => {
-  Pet.deleteOne({ _id: req.params.id })
+  Pet.deleteOne({ _id: req.params.id, creator: req.userData.userId })
     .then((result) => {
-      console.log(result);
-      res.status(200).json({ message: "Pet deleted!" });
+      if (result.deletedCount > 0) {
+        res.status(200).json({ message: "Pet deleted!" });
+      } else {
+        res.status(401).json({ message: "Not authorized!!" });
+      }
     })
     .catch((error) => {
       res.status(500).json({
@@ -87,10 +90,15 @@ exports.updatePet = (req, res, next) => {
     breed: req.body.breed,
     imagePath: imagePath,
   });
-  Pet.updateOne({ _id: req.params.id }, pet).then((result) => {
-    console.log(result);
-    res.status(200).json({ message: "Update successfull!" });
-  });
+  Pet.updateOne({ _id: req.params.id, creator: req.userData.userId }, pet).then(
+    (result) => {
+      if (result.modifiedCount > 0) {
+        res.status(200).json({ message: "Update successfull!" });
+      } else {
+        res.status(401).json({ message: "Not authorized!!" });
+      }
+    }
+  );
 };
 
 exports.getPet = (req, res, next) => {
