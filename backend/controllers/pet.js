@@ -8,6 +8,7 @@ exports.createPet = (req, res, next) => {
     age: req.body.age,
     breed: req.body.breed,
     imagePath: url + "/images/pets-images/" + req.file.filename,
+    creator: 
   });
   pet
     .save()
