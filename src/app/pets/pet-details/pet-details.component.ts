@@ -15,6 +15,7 @@ export class PetDetailsComponent implements OnInit, OnDestroy {
   id: string;
   private authStatusSub: Subscription;
   userIsAuthenticated = false;
+  userId: string;
 
   constructor(
     private router: Router,
@@ -29,11 +30,13 @@ export class PetDetailsComponent implements OnInit, OnDestroy {
       this.pet = this.petService.getPet1(this.id);
     });
     this.userIsAuthenticated = this.authService.getIsAuth();
+    this.userId = this.authService.getUserId();
     this.authStatusSub = this.authService
       .getAuthStatusListener()
       .subscribe((isAuthenticated) => {
         console.log(isAuthenticated);
         this.userIsAuthenticated = isAuthenticated;
+        this.userId = this.authService.getUserId();
       });
   }
 
