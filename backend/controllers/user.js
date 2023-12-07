@@ -15,7 +15,7 @@ exports.createUser = (req, res, next) => {
       })
       .catch((err) => {
         res.status(500).json({
-          error: err,
+          message: "Invalid authentication credentials!",
         });
       });
   });
@@ -52,7 +52,7 @@ exports.userLogin = (req, res, next) => {
     })
     .catch((err) => {
       res.staus(401).json({
-        message: "Auth failed!",
+        message: "Invalid authentication credentials!",
         err: err,
       });
     });

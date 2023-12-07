@@ -26,9 +26,6 @@ exports.createPet = (req, res, next) => {
         message: "Creating pet failed! :(",
       });
     });
-
-  // console.log(pet);
-  // res.status(201).json({ message: "Pet added!" });
 };
 
 exports.getPets = (req, res, next) => {
@@ -89,23 +86,33 @@ exports.updatePet = (req, res, next) => {
     imagePath: imagePath,
     creator: req.userData.userId,
   });
-  Pet.updateOne({ _id: req.params.id, creator: req.userData.userId }, pet).then(
-    (result) => {
+  Pet.updateOne({ _id: req.params.id, creator: req.userData.userId }, pet)
+    .then((result) => {
       if (result.modifiedCount > 0) {
         res.status(200).json({ message: "Update successfull!" });
       } else {
         res.status(401).json({ message: "Not authorized!!" });
       }
-    }
-  );
+    })
+    .catch((error) => {
+      res.status(500).json({
+        message: "Couldnt update post!",
+      });
+    });
 };
 
 exports.getPet = (req, res, next) => {
-  Pet.findById(req.params.id).then((pet) => {
-    if (pet) {
-      res.status(200).json(pet);
-    } else {
-      res.status(404).json({ message: "Pet not found" });
-    }
-  });
+  Pet.findById(req.params.id)
+    .then((pet) => {
+      if (pet) {
+        res.status(200).json(pet);
+      } else {
+        res.status(404).json({ message: "Pet not found" });
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({
+        message: "Fetching pet failed!",
+      });
+    });
 };
