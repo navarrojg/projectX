@@ -4,6 +4,8 @@ import { PetsService } from '../pets.service';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { Pet } from '../pet.model';
 import { mimeType } from './mime-type.validator';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-pet-create',
@@ -11,22 +13,27 @@ import { mimeType } from './mime-type.validator';
   styleUrls: ['./pet-create.component.css'],
 })
 export class PetCreateComponent implements OnInit, OnDestroy {
-  // enteredTitle = '';
-  // enteredContent = '';
   petForm: FormGroup;
   isLoading = false;
   private mode = 'create';
   private id: string;
   private pet: Pet;
   imagePreview: string;
+  private authStatusSub: Subscription;
 
   constructor(
     private petsService: PetsService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
+    this.authStatusSub = this.authService
+      .getAuthStatusListener()
+      .subscribe((authStatus) => {
+        this.isLoading = false;
+      });
     this.petForm = new FormGroup({
       name: new FormControl(null, {
         validators: [Validators.required, Validators.minLength(1)],
@@ -114,5 +121,7 @@ export class PetCreateComponent implements OnInit, OnDestroy {
     reader.readAsDataURL(file);
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    this.authStatusSub.unsubscribe();
+  }
 }
