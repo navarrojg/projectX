@@ -5,7 +5,6 @@ import { PetDetailsComponent } from './pet-details/pet-details.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from '../angular-material.module';
-import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
