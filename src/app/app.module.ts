@@ -11,24 +11,13 @@ import { HeaderComponent } from './header/header.component';
 import { PetsListComponent } from './pets/pets-list/pets-list.component';
 import { PetCreateComponent } from './pets/pet-create/pet-create.component';
 
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatInputModule } from '@angular/material/input';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatSelectModule } from '@angular/material/select';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatPaginatorModule } from '@angular/material/paginator';
-
-import { HttpClient } from '@angular/common/http';
 import { PetDetailsComponent } from './pets/pet-details/pet-details.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthInterceptor } from './auth/auth-intercpetor';
 import { ErrorInterceptor } from './error-interceptor';
 import { ErrorComponent } from './error/error.component';
+import { AngularMaterialModule } from './angular-material.module';
 
 @NgModule({
   declarations: [
@@ -47,18 +36,9 @@ import { ErrorComponent } from './error/error.component';
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatCardModule,
-    MatInputModule,
     ReactiveFormsModule,
     FormsModule,
-    MatProgressSpinnerModule,
-    MatDialogModule,
-    MatSelectModule,
-    MatMenuModule,
-    MatPaginatorModule,
+    AngularMaterialModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
