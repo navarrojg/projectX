@@ -14,9 +14,10 @@ import { ErrorComponent } from './error/error.component';
 
 import { AngularMaterialModule } from './angular-material.module';
 import { PetsModule } from './pets/pets.module';
+import { DeleteConf } from './delete-conf/delete-conf.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, ErrorComponent],
+  declarations: [AppComponent, HeaderComponent, ErrorComponent, DeleteConf],
   imports: [
     CommonModule,
     BrowserModule,
