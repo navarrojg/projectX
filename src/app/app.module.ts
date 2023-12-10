@@ -14,7 +14,6 @@ import { ErrorComponent } from './error/error.component';
 
 import { AngularMaterialModule } from './angular-material.module';
 import { PetsModule } from './pets/pets.module';
-import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, ErrorComponent],
@@ -26,7 +25,6 @@ import { AuthModule } from './auth/auth.module';
     AppRoutingModule,
     AngularMaterialModule,
     PetsModule,
-    AuthModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
