@@ -9,7 +9,7 @@ import { Pet } from '../pets/pet.model';
 })
 export class DeleteConf implements OnInit {
   petId: string;
-  pet: any;
+  pet: Pet;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,

@@ -5,17 +5,12 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment.development';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth/auth.service';
 
 const BACKEND_URL = environment.apiUrl + '/pets/';
 
 @Injectable({ providedIn: 'root' })
 export class PetsService {
-  private pets: Pet[] = [
-    // { name: 'Max', sex: 'M', age: 12, breed: 'german shepard' },
-    // { name: 'Alex', sex: 'F', age: 5, breed: 'german shepard' },
-    // { name: 'Misty', sex: 'F', age: 2, breed: 'german shepard' },
-  ];
+  private pets: Pet[] = [];
   private petsUpdate = new Subject<{ pets: Pet[]; petsCount: number }>();
 
   constructor(private http: HttpClient, private router: Router) {}

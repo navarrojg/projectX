@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PetsService } from '../pets.service';
-import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Pet } from '../pet.model';
 import { mimeType } from './mime-type.validator';
 import { Subscription } from 'rxjs';
@@ -23,7 +23,6 @@ export class PetCreateComponent implements OnInit, OnDestroy {
 
   constructor(
     private petsService: PetsService,
-    private router: Router,
     private route: ActivatedRoute,
     private authService: AuthService
   ) {}
