@@ -6,18 +6,19 @@ button {
 
 img {
   border-radius: 8px;
+  margin-bottom: 1em;
 }
 
 .main {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   margin-top: 3em;
 }
 
 .details {
   margin: 0 2em;
-  width: 30%;
 }
 
 .petDetails {
@@ -26,4 +27,13 @@ img {
 
 h1 {
   font-size: 3rem;
+  text-align: center;
+}
+
+textarea {
+  padding: 1em;
+  margin-bottom: 1em;
+  resize: vertical;
+  width: 400px;
+  border-radius: 8px;
 }
