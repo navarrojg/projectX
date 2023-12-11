@@ -24,16 +24,16 @@
     <div class="comment-section">
         <div>
             <h2>Leave a Comment</h2>
-            <textarea placeholder="Type your comment here"></textarea>
+            <textarea [(ngModel)]="newComment" placeholder="Type your comment here"></textarea>
             <div>
-                <button mat-button >Save Comment</button>
+                <button mat-button (click)="onAddComment()">Save Comment</button>
             </div>
         </div>
         <hr>
         <div>
-            <h2>All Comments</h2>
+            <h2>All Comments:</h2>
             <ul>
-                <li>ale slodziak ;d </li>
+                <li *ngFor="let comment of comments">- {{comment}}</li>
             </ul>
         </div>
     </div>

@@ -37,3 +37,16 @@ textarea {
   width: 400px;
   border-radius: 8px;
 }
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 1em;
+  padding: 1em;
+  background-color: #fff;
+  width: 100%;
+  border-radius: 8px;
+}

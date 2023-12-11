@@ -20,6 +20,9 @@ export class PetDetailsComponent implements OnInit, OnDestroy {
   userIsAuthenticated = false;
   userId: string;
 
+  newComment: string = '';
+  comments: string[] = ['fajny kotek :)', 'what a kitty!'];
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -59,5 +62,10 @@ export class PetDetailsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.authStatusSub.unsubscribe();
+  }
+
+  onAddComment() {
+    this.comments.push(this.newComment);
+    this.newComment = '';
   }
 }
