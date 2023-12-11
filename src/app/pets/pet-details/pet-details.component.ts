@@ -45,7 +45,11 @@ export class PetDetailsComponent implements OnInit, OnDestroy {
   }
 
   onDeletePet(petId: string) {
-    this.dialog.open(DeleteConf);
+    this.dialog.open(DeleteConf, {
+      data: {
+        id: this.route.snapshot.params['id'],
+      },
+    });
     // this.petService.deletePet(petId);
   }
 

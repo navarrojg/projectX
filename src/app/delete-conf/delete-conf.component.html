@@ -1,8 +1,8 @@
 <h1 mat-dialog-title>Please confirm the operation</h1>
 <div mat-dialog-content>
-    <p class="mat-body-1">Are you sure that you want to delete this pet?</p>
+    <p class="mat-body-1">Are you sure that you want to delete {{this.pet.name | uppercase}}?</p>
 </div>
 <div mat-dialog-actions>
-    <button mat-button mat-dialog-close>Yes</button>
-    <button mat-button mat-dialog-close>No</button>
+    <button mat-button mat-dialog-close (click)="onDetelePet()">Yes</button>
+    <button mat-button mat-dialog-close cdkFocusInitial>No</button>
 </div>
