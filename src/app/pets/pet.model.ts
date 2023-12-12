@@ -6,4 +6,5 @@ export interface Pet {
   breed: string;
   imagePath: string;
   creator: string;
+  comments: string[];
 }
