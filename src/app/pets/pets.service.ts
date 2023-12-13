@@ -132,6 +132,7 @@ export class PetsService {
         breed: breed,
         imagePath: image,
         creator: null,
+        comments: null,
       };
     }
 
@@ -152,4 +153,6 @@ export class PetsService {
       this.router.navigate(['/']);
     });
   }
+
+  addComment() {}
 }

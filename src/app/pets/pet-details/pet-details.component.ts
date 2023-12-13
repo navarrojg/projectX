@@ -21,7 +21,8 @@ export class PetDetailsComponent implements OnInit, OnDestroy {
   userId: string;
 
   newComment: string = '';
-  comments: string[] = ['fajny kotek :)', 'what a kitty!'];
+  // comments: string[] = ['fajny kotek :)', 'what a kitty!'];
+  comments: string[] = [];
 
   constructor(
     private router: Router,
@@ -65,7 +66,11 @@ export class PetDetailsComponent implements OnInit, OnDestroy {
   }
 
   onAddComment() {
-    this.comments.push(this.newComment);
-    this.newComment = '';
+    if (this.newComment.trim() !== '') {
+      this.comments.push(this.newComment);
+      this.pet.comments = this.comments;
+      console.log(this.pet);
+      this.newComment = '';
+    }
   }
 }
