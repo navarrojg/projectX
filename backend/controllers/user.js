@@ -51,7 +51,7 @@ exports.userLogin = (req, res, next) => {
       });
     })
     .catch((err) => {
-      res.staus(401).json({
+      res.status(401).json({
         message: "Invalid authentication credentials!",
         err: err,
       });

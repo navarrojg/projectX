@@ -116,3 +116,26 @@ exports.getPet = (req, res, next) => {
       });
     });
 };
+
+exports.addComment = (req, res, next) => {
+  const petId = req.params.id;
+  const newComment = req.body.comment;
+
+  Pet.findById(petId)
+    .then((pet) => {
+      if (!pet) {
+        return res.status(404).json({ message: "Pet not found!" });
+      }
+
+      pet.comments.push(newComment);
+      return pet.save();
+    })
+    .then((updatedPet) => {
+      res
+        .status(200)
+        .json({ message: "Comment added successfully!", pet: updatedPet });
+    })
+    .catch((error) => {
+      res.status(500).json({ message: "Adding comment to pet failed!" });
+    });
+};

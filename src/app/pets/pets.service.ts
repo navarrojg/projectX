@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Pet } from './pet.model';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment.development';
@@ -93,6 +93,7 @@ export class PetsService {
       breed: string;
       imagePath: string;
       creator: string;
+      comments: string[];
     }>(BACKEND_URL + id);
   }
 
@@ -154,5 +155,7 @@ export class PetsService {
     });
   }
 
-  addComment() {}
+  addComment(petid: string, comment: string) {
+    return this.http.post(BACKEND_URL + petid + '/' + 'comments', { comment });
+  }
 }

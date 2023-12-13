@@ -1,4 +1,5 @@
-<div class="main">
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div class="main" *ngIf="!isLoading">
     <div class="details">
         <img [src]="pet.imagePath" alt="pet.name" style="max-height: 300px;">
 
@@ -33,7 +34,7 @@
         <div>
             <h2>All Comments:</h2>
             <ul>
-                <li *ngFor="let comment of comments">- {{comment}}</li>
+                <li *ngFor="let comment of pet.comments">- {{comment}}</li>
             </ul>
         </div>
     </div>

@@ -11,6 +11,7 @@ const petSchema = mongoose.Schema({
     ref: "User",
     required: true,
   },
+  comments: [{ type: String }],
 });
 
 module.exports = mongoose.model("Pet", petSchema);
