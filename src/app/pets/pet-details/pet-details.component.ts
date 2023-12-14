@@ -73,19 +73,20 @@ export class PetDetailsComponent implements OnInit, OnDestroy {
 
   onAddComment() {
     if (this.newComment.trim() !== '') {
-      this.comments.push(this.newComment);
-      this.pet.comments = this.comments;
+      // this.comments.push(this.newComment);
+      // this.pet.comments = this.comments;
 
-      this.petService.addComment(this.pet.id, this.newComment).subscribe(
+      this.petService.addComment(this.id, this.newComment).subscribe(
         (response) => {
-          console.log('comment added succesfully:', response);
+          this.petService.getPet(this.id).subscribe((pet: any) => {
+            this.pet = pet;
+            console.log('comment added succesfully:', response);
+          });
         },
         (error) => {
           console.error('error adding comment: ', error);
         }
       );
-      // console.log(this.pet);
-      // console.log(this.pet.comments);
       this.newComment = '';
     }
   }
