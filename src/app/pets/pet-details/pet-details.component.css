@@ -50,3 +50,25 @@ li {
   width: 100%;
   border-radius: 8px;
 }
+
+.comment-warning {
+  background-color: #ffe6e6;
+  color: #cc0000;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 1.5em 0;
+  font-size: 16px;
+}
+
+.comment-warning::before {
+  content: "⚠ ";
+  font-size: 1.8rem;
+  margin-right: 5px;
+}
+
+.no-comments {
+  color: #555;
+  font-style: italic;
+  margin-top: 10px;
+  font-size: 1.8rem;
+}

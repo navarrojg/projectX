@@ -23,7 +23,8 @@
 
 
     <div class="comment-section">
-        <div>
+        <p *ngIf="!userIsAuthenticated" class="comment-warning">You have to be logged to add new comments.</p>
+        <div *ngIf="userIsAuthenticated">
             <h2>Leave a Comment</h2>
             <textarea [(ngModel)]="newComment" placeholder="Type your comment here"></textarea>
             <div>
@@ -31,11 +32,12 @@
             </div>
         </div>
         <hr>
-        <div>
+        <div *ngIf="pet.comments.length>0">
             <h2>All Comments:</h2>
             <ul>
                 <li *ngFor="let comment of pet.comments">- {{comment}}</li>
             </ul>
         </div>
+        <p *ngIf="pet.comments.length==0" class="no-comments">There is no comments yet.</p>
     </div>
 </div>
