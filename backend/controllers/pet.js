@@ -77,6 +77,7 @@ exports.updatePet = (req, res, next) => {
     const url = req.protocol + "://" + req.get("host");
     imagePath = url + "/images/pets-images/" + req.file.filename;
   }
+
   const pet = new Pet({
     _id: req.body.id,
     name: req.body.name,
@@ -85,7 +86,9 @@ exports.updatePet = (req, res, next) => {
     breed: req.body.breed,
     imagePath: imagePath,
     creator: req.userData.userId,
+    comments: req.body.comments,
   });
+
   Pet.updateOne({ _id: req.params.id, creator: req.userData.userId }, pet)
     .then((result) => {
       if (result.matchedCount > 0) {

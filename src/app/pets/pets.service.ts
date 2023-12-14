@@ -114,7 +114,8 @@ export class PetsService {
     sex: string,
     age: any,
     breed: string,
-    image: File | string
+    image: File | string,
+    comments: string[]
   ) {
     let petData: Pet | FormData;
     if (typeof image === 'object') {
@@ -134,7 +135,7 @@ export class PetsService {
         breed: breed,
         imagePath: image,
         creator: null,
-        comments: null,
+        comments: comments ? comments : null,
       };
     }
 

@@ -58,6 +58,8 @@ export class PetCreateComponent implements OnInit, OnDestroy {
         this.id = paramMap.get('id');
         this.isLoading = true;
         this.petsService.getPet(this.id).subscribe((petData) => {
+          console.log(petData);
+          console.log(petData.comments);
           this.isLoading = false;
           this.pet = {
             id: petData._id,
@@ -67,7 +69,7 @@ export class PetCreateComponent implements OnInit, OnDestroy {
             breed: petData.breed,
             imagePath: petData.imagePath,
             creator: petData.creator,
-            comments: null,
+            comments: petData.comments,
           };
           this.petForm.setValue({
             name: this.pet.name,
@@ -104,7 +106,8 @@ export class PetCreateComponent implements OnInit, OnDestroy {
         this.petForm.value.sex,
         this.petForm.value.age,
         this.petForm.value.breed,
-        this.petForm.value.image
+        this.petForm.value.image,
+        this.pet.comments
       );
     }
     this.petForm.reset();
