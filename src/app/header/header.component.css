@@ -16,3 +16,10 @@ ul {
 .activebutton {
   background-color: #69f0ae;
 }
+
+mat-toolbar {
+  position: fixed;
+  top: 0;
+  margin-bottom: 500px;
+  z-index: 100;
+}
