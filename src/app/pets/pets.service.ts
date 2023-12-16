@@ -34,6 +34,7 @@ export class PetsService {
                 imagePath: pet.imagePath,
                 creator: pet.creator,
                 comments: pet.comments,
+                likes: pet.likes,
               };
             }),
             maxPets: petData.maxPets,
@@ -95,6 +96,7 @@ export class PetsService {
       imagePath: string;
       creator: string;
       comments: string[];
+      likes: number;
     }>(BACKEND_URL + id);
   }
 
@@ -115,7 +117,8 @@ export class PetsService {
     age: any,
     breed: string,
     image: File | string,
-    comments: string[]
+    comments: string[],
+    likes: number
   ) {
     let petData: Pet | FormData;
     if (typeof image === 'object') {
@@ -136,10 +139,11 @@ export class PetsService {
         imagePath: image,
         creator: null,
         comments: comments ? comments : null,
+        likes: likes ? likes : null,
       };
     }
 
-    this.http.put(BACKEND_URL + id, petData).subscribe((response) => {
+    this.http.put(BACKEND_URL + id, petData).subscribe(() => {
       // const updatedPets = [...this.pets];
       // const oldPetIndex = updatedPets.findIndex((p) => p.id === id);
       // const pet: Pet = {
@@ -159,5 +163,16 @@ export class PetsService {
 
   addComment(petid: string, comment: string) {
     return this.http.post(BACKEND_URL + petid + '/' + 'comments', { comment });
+  }
+
+  giveLike(petid: string) {
+    this.http.post(BACKEND_URL + petid + '/likes', {}).subscribe(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

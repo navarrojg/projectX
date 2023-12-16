@@ -12,6 +12,7 @@ const petSchema = mongoose.Schema({
     required: true,
   },
   comments: [{ type: String }],
+  likes: { type: Number },
 });
 
 module.exports = mongoose.model("Pet", petSchema);

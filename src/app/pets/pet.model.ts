@@ -7,4 +7,5 @@ export interface Pet {
   imagePath: string;
   creator: string;
   comments: string[];
+  likes: number;
 }
