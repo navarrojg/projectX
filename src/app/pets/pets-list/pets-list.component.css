@@ -3,6 +3,7 @@
   background-color: #7b1fa2;
   width: 200px;
   transition: transform 0.5s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .example-card:hover {
