@@ -20,10 +20,8 @@ export class PetDetailsComponent implements OnInit, OnDestroy {
   userIsAuthenticated = false;
   userId: string;
   isLoading = false;
-
   newComment: string = '';
-  // comments: string[] = ['fajny kotek :)', 'what a kitty!'];
-  comments: string[] = [];
+  initialCommentsToShow = 5;
 
   constructor(
     private router: Router,
@@ -89,5 +87,9 @@ export class PetDetailsComponent implements OnInit, OnDestroy {
       );
       this.newComment = '';
     }
+  }
+
+  showMoreComments() {
+    this.initialCommentsToShow += 5;
   }
 }

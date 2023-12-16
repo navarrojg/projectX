@@ -14,7 +14,7 @@ export class PetsListComponent implements OnInit, OnDestroy {
   private petSub: Subscription;
   isLoading = false;
   totalPets = 0;
-  petsPerPage = 4;
+  petsPerPage = 10;
   currentPage = 1;
   petSizeOptions = [3, 4, 5, 10];
 
