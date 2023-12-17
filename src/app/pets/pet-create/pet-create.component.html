@@ -18,8 +18,8 @@
             <mat-error *ngIf="petForm.get('age').invalid">Please enter pet's age.</mat-error>
         </mat-form-field>
         <mat-form-field>
-            <input matInput type="text" placeholder="Pet's breed" formControlName="breed">
-            <mat-error *ngIf="petForm.get('breed').invalid">Please enter pet's breed.</mat-error>
+            <input matInput type="text" placeholder="Pet's type" formControlName="breed">
+            <mat-error *ngIf="petForm.get('breed').invalid">Please enter pet's type.</mat-error>
         </mat-form-field>
         <div class="image-preview" *ngIf="imagePreview!=='' && imagePreview && petForm.get('image').valid">
             <img [src]="imagePreview" alt="petForm.value.name">
