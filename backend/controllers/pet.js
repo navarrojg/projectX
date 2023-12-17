@@ -33,6 +33,9 @@ exports.getPets = (req, res, next) => {
   const pageSize = +req.query.pageSize;
   const currentPage = +req.query.page;
   const petQuery = Pet.find();
+
+  petQuery.sort({ likes: -1 });
+
   let fetchedPets;
   if (pageSize && currentPage) {
     petQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
