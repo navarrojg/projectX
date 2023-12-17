@@ -41,15 +41,9 @@ export class PetsListComponent implements OnInit, OnDestroy {
 
   onGiveLike(petId: string) {
     this.petsService.giveLike(petId);
-    // this.petsService.giveLike(petId, 1).subscribe(() => {
-    // this.petsService.getPets(this.petsPerPage, this.currentPage);
-    // this.petsService
-    //   .getPetUpdateListener()
-    //   .subscribe((petData: { pets: Pet[]; petsCount: number }) => {
-    //     this.isLoading = false;
-    //     this.pets = petData.pets;
-    //   });
-    // });
+    this.petsService.giveLike(petId).subscribe(() => {
+      this.petsService.getPets(this.petsPerPage, this.currentPage);
+    });
   }
 
   petIcon(breed: string) {

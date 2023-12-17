@@ -166,13 +166,15 @@ export class PetsService {
   }
 
   giveLike(petid: string) {
-    this.http.post(BACKEND_URL + petid + '/likes', {}).subscribe(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    return this.http.post(BACKEND_URL + petid + '/likes', {});
+
+    // .subscribe(
+    //   (response) => {
+    //     console.log(response);
+    //   },
+    //   (error) => {
+    //     console.log(error);
+    //   }
+    // );
   }
 }
