@@ -9,6 +9,7 @@ exports.createPet = (req, res, next) => {
     breed: req.body.breed,
     imagePath: url + "/images/pets-images/" + req.file.filename,
     creator: req.userData.userId,
+    likes: 0,
   });
   pet
     .save()
@@ -32,6 +33,9 @@ exports.getPets = (req, res, next) => {
   const pageSize = +req.query.pageSize;
   const currentPage = +req.query.page;
   const petQuery = Pet.find();
+
+  petQuery.sort({ likes: -1 });
+
   let fetchedPets;
   if (pageSize && currentPage) {
     petQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
@@ -87,6 +91,7 @@ exports.updatePet = (req, res, next) => {
     imagePath: imagePath,
     creator: req.userData.userId,
     comments: req.body.comments,
+    likes: req.body.likes,
   });
 
   Pet.updateOne({ _id: req.params.id, creator: req.userData.userId }, pet)
@@ -134,11 +139,27 @@ exports.addComment = (req, res, next) => {
       return pet.save();
     })
     .then((updatedPet) => {
-      res
-        .status(200)
-        .json({ message: "Comment added successfully!", pet: updatedPet });
+      res.status(200).json({ message: "Comment added successfully!" });
     })
     .catch((error) => {
       res.status(500).json({ message: "Adding comment to pet failed!" });
+    });
+};
+
+exports.addLike = (req, res, next) => {
+  const petId = req.params.id;
+  Pet.findById(petId)
+    .then((pet) => {
+      if (!pet) {
+        return res.status(404).json({ message: "Pet not found!" });
+      }
+      pet.likes += 1;
+      return pet.save();
+    })
+    .then((updatedPet) => {
+      res.status(200).json({ message: "Like added successfully!" });
+    })
+    .catch((error) => {
+      res.status(500).json({ message: "Adding like to pet failed!" });
     });
 };

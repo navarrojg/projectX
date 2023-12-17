@@ -11,6 +11,7 @@ router.get("", PetController.getPets);
 router.get("/:id", PetController.getPet);
 router.delete("/:id", checkAuth, PetController.deletePet);
 router.put("/:id", checkAuth, extractFile, PetController.updatePet);
-router.post("/:id/comments", PetController.addComment);
+router.post("/:id/comments", checkAuth, PetController.addComment);
+router.post("/:id/likes", PetController.addLike);
 
 module.exports = router;

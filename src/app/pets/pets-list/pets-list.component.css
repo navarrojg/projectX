@@ -38,3 +38,10 @@ mat-card-title {
 .profile-photo {
   height: 140px;
 }
+
+.like-counter {
+  padding: 0 0.4em;
+  font-size: 1.8rem;
+  color: whitesmoke;
+  text-align: center;
+}
