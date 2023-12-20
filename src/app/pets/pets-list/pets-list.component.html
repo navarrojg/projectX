@@ -9,7 +9,7 @@
         </mat-card-header>
         <img class="profile-photo" mat-card-image [src]="pet.imagePath" [alt]="pet.name">
         <mat-card-actions>
-            <span class="like-counter">👍{{ pet.likes }}</span>
+            <span [@likeAnimation]="likeState" class="like-counter">👍{{ pet.likes }}</span>
             <button mat-mini-fab matTooltip="Accent" color="accent" (click)="onGiveLike(pet.id)"
                 aria-label="Example mini fab with a heart icon">
                 <mat-icon>favorite</mat-icon>

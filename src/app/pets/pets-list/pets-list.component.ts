@@ -3,11 +3,29 @@ import { PetsService } from '../pets.service';
 import { Pet } from '../pet.model';
 import { Subscription } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-pets-list',
   templateUrl: './pets-list.component.html',
   styleUrls: ['./pets-list.component.css'],
+  animations: [
+    trigger('likeAnimation', [
+      state(
+        'rotate',
+        style({
+          transform: 'rotate(360deg)',
+        })
+      ),
+      transition('normal => rotate', [animate('0.7s ease-out')]),
+    ]),
+  ],
 })
 export class PetsListComponent implements OnInit, OnDestroy {
   pets: Pet[] = [];
@@ -17,6 +35,8 @@ export class PetsListComponent implements OnInit, OnDestroy {
   petsPerPage = 10;
   currentPage = 1;
   petSizeOptions = [3, 4, 5, 10];
+  likeState: 'normal' | 'rotate' = 'normal';
+  // petAnimationStates: { [petId: string]: 'normal' | 'rotate' } = {};
 
   constructor(private petsService: PetsService) {}
 
@@ -40,10 +60,14 @@ export class PetsListComponent implements OnInit, OnDestroy {
   }
 
   onGiveLike(petId: string) {
-    this.petsService.giveLike(petId);
     this.petsService.giveLike(petId).subscribe(() => {
       this.petsService.getPets(this.petsPerPage, this.currentPage);
     });
+
+    this.likeState = 'rotate';
+    setTimeout(() => {
+      this.likeState = 'normal';
+    }, 300);
   }
 
   petIcon(breed: string) {
