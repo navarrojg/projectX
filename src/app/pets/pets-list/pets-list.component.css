@@ -44,4 +44,5 @@ mat-card-title {
   font-size: 1.8rem;
   color: whitesmoke;
   text-align: center;
+  transition: transform 0.8s ease-out;
 }

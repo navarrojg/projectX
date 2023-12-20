@@ -23,7 +23,7 @@ import {
           transform: 'rotate(360deg)',
         })
       ),
-      transition('normal => rotate', [animate('0.7s ease-out')]),
+      transition('normal => rotate', [animate('0.8s ease-out')]),
     ]),
   ],
 })
@@ -35,8 +35,7 @@ export class PetsListComponent implements OnInit, OnDestroy {
   petsPerPage = 10;
   currentPage = 1;
   petSizeOptions = [3, 4, 5, 10];
-  likeState: 'normal' | 'rotate' = 'normal';
-  // petAnimationStates: { [petId: string]: 'normal' | 'rotate' } = {};
+  petAnimationStates: { [petId: string]: 'normal' | 'rotate' } = {};
 
   constructor(private petsService: PetsService) {}
 
@@ -63,11 +62,10 @@ export class PetsListComponent implements OnInit, OnDestroy {
     this.petsService.giveLike(petId).subscribe(() => {
       this.petsService.getPets(this.petsPerPage, this.currentPage);
     });
-
-    this.likeState = 'rotate';
+    this.petAnimationStates[petId] = 'rotate';
     setTimeout(() => {
-      this.likeState = 'normal';
-    }, 300);
+      this.petAnimationStates[petId] = 'normal';
+    }, 800);
   }
 
   petIcon(breed: string) {
