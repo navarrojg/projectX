@@ -36,7 +36,7 @@
         <div *ngIf="pet.comments">
             <h2>{{pet.comments.length}} {{pet.comments.length==1 ? 'comment:' : 'comments:'}}</h2>
             <ul>
-                <li *ngFor="let comment of pet.comments.slice(0,initialCommentsToShow)">- {{comment}}</li>
+                <li [@newComment] *ngFor="let comment of pet.comments.slice(0,initialCommentsToShow)">- {{comment}}</li>
             </ul>
         </div>
         <button mat-raised-button color="primary" *ngIf="pet.comments.length>initialCommentsToShow"

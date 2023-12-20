@@ -6,11 +6,57 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteConf } from 'src/app/delete-conf/delete-conf.component';
+import {
+  animate,
+  keyframes,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-pet-details',
   templateUrl: './pet-details.component.html',
   styleUrls: ['./pet-details.component.css'],
+  animations: [
+    trigger('newComment', [
+      state(
+        'in',
+        style({
+          opacity: 1,
+          transform: 'translateX(0)',
+        })
+      ),
+      transition('void => *', [
+        animate(
+          1000,
+          keyframes([
+            style({
+              transform: 'translateX(-500px)',
+              opacity: 0,
+              offset: 0,
+            }),
+            style({
+              transform: 'translateX(-250px)',
+              opacity: 0.5,
+              offset: 0.3,
+            }),
+            style({
+              transform: 'translateX(-100px)',
+              opacity: 0.8,
+              offset: 0.8,
+            }),
+            style({
+              transform: 'translateX(0px)',
+              opacity: 1,
+              offset: 1,
+            }),
+          ])
+        ),
+      ]),
+    ]),
+  ],
 })
 @Injectable()
 export class PetDetailsComponent implements OnInit, OnDestroy {
