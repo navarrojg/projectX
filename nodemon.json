@@ -1,0 +1,6 @@
+{
+  "env": {
+    "MONGO_ATLAS_PW": "L68uO1IMD5xwEHiq",
+    "JWT_KEY": "thats_what_she_said_or_he_said"
+  }
+}
