@@ -17,10 +17,26 @@
             <input matInput type="number" placeholder="Pet's age" formControlName="age">
             <mat-error *ngIf="petForm.get('age').invalid">Please enter pet's age.</mat-error>
         </mat-form-field>
-        <mat-form-field>
+
+        <!-- <mat-form-field>
             <input matInput type="text" placeholder="Pet's type" formControlName="breed">
             <mat-error *ngIf="petForm.get('breed').invalid">Please enter pet's type.</mat-error>
+        </mat-form-field> -->
+
+        <mat-form-field>
+            <mat-label>Pet's type</mat-label>
+            <select matNativeControl name="breed" formControlName="breed">
+                <option value="dog">dog</option>
+                <option value="cat">cat</option>
+                <option value="horse">horse</option>
+                <option value="bird">bird</option>
+                <option value="turtle">turtle</option>
+                <option value="other">other</option>
+            </select>
+            <mat-error *ngIf="petForm.get('breed').invalid">Please enter pet's type.</mat-error>
         </mat-form-field>
+
+
         <div class="image-preview" *ngIf="imagePreview!=='' && imagePreview && petForm.get('image').valid">
             <img [src]="imagePreview" alt="petForm.value.name">
         </div>
