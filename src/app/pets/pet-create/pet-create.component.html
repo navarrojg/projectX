@@ -7,10 +7,10 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Pet's sex</mat-label>
-            <select matNativeControl name="sex" formControlName="sex">
-                <option value="M">M</option>
-                <option value="F">F</option>
-            </select>
+            <mat-select matNativeControl name="sex" formControlName="sex">
+                <mat-option value="M">M</mat-option>
+                <mat-option value="F">F</mat-option>
+            </mat-select>
             <mat-error *ngIf="petForm.get('sex').invalid">Please enter pet's sex.</mat-error>
         </mat-form-field>
         <mat-form-field>
@@ -19,14 +19,14 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Pet's type</mat-label>
-            <select matNativeControl name="breed" formControlName="breed">
-                <option value="dog">dog</option>
-                <option value="cat">cat</option>
-                <option value="horse">horse</option>
-                <option value="bird">bird</option>
-                <option value="turtle">turtle</option>
-                <option value="other">other</option>
-            </select>
+            <mat-select matNativeControl name="breed" formControlName="breed">
+                <mat-option value="dog">dog</mat-option>
+                <mat-option value="cat">cat</mat-option>
+                <mat-option value="horse">horse</mat-option>
+                <mat-option value="bird">bird</mat-option>
+                <mat-option value="turtle">turtle</mat-option>
+                <mat-option value="other">other</mat-option>
+            </mat-select>
             <mat-error *ngIf="petForm.get('breed').invalid">Please enter pet's type.</mat-error>
         </mat-form-field>
 
