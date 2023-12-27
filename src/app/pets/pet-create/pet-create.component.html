@@ -17,12 +17,6 @@
             <input matInput type="number" placeholder="Pet's age" formControlName="age">
             <mat-error *ngIf="petForm.get('age').invalid">Please enter pet's age.</mat-error>
         </mat-form-field>
-
-        <!-- <mat-form-field>
-            <input matInput type="text" placeholder="Pet's type" formControlName="breed">
-            <mat-error *ngIf="petForm.get('breed').invalid">Please enter pet's type.</mat-error>
-        </mat-form-field> -->
-
         <mat-form-field>
             <mat-label>Pet's type</mat-label>
             <select matNativeControl name="breed" formControlName="breed">
