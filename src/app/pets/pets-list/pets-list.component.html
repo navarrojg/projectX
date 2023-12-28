@@ -21,4 +21,4 @@
 <mat-paginator *ngIf="pets.length>0 " [length]="totalPets" [pageSize]="petsPerPage" [pageSizeOptions]="petSizeOptions"
     (page)="onChangedPage($event)">
 </mat-paginator>
-<p class="info-text" *ngIf="pets.length<=0">There are no pets!</p>
+<p class="info-text" *ngIf="pets.length<=0 && !isLoading">There are no pets!</p>
