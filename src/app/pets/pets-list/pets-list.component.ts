@@ -88,6 +88,12 @@ export class PetsListComponent implements OnInit, OnDestroy {
     const turtleAvatar =
       'https://cdn.iconscout.com/icon/free/png-256/free-turtle-104-979422.png';
     const birdAvatar = 'https://static.thenounproject.com/png/2533760-200.png';
+    const hamsterAvatar =
+      'https://cdn-icons-png.flaticon.com/512/5987/5987650.png';
+    const fishAvatar =
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBx2I_8PXXi9ffXdBypbTOvEOfJhoc5F9pfA';
+    const snakeAvatar =
+      'https://www.creativefabrica.com/wp-content/uploads/2023/01/29/Snake-logo-icon-vector-template-Graphics-59338083-1.jpg';
     switch (petType.toLowerCase()) {
       case 'dog':
         return dogAvatar;
@@ -103,6 +109,15 @@ export class PetsListComponent implements OnInit, OnDestroy {
         break;
       case 'bird':
         return birdAvatar;
+        break;
+      case 'hamster':
+        return hamsterAvatar;
+        break;
+      case 'fish':
+        return fishAvatar;
+        break;
+      case 'snake':
+        return snakeAvatar;
         break;
       default:
         return unkownAvatar;
