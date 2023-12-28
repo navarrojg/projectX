@@ -25,6 +25,10 @@ import {
       ),
       transition('normal => rotate', [animate('0.8s ease-out')]),
     ]),
+    trigger('fadeIn', [
+      state('void', style({ opacity: 0 })),
+      transition(':enter, :leave', [animate(1000)]),
+    ]),
   ],
 })
 export class PetsListComponent implements OnInit, OnDestroy {
