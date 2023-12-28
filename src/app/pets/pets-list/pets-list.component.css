@@ -46,3 +46,13 @@ mat-card-title {
   text-align: center;
   transition: transform 0.8s ease-out;
 }
+
+.info-text {
+  font-size: 5rem;
+  color: #777;
+  text-align: center;
+  padding: 0.5em;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  margin: 2em 0;
+}
