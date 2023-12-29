@@ -85,4 +85,8 @@ li:hover {
   li {
     width: 100%;
   }
+
+  img {
+    max-height: 300px;
+  }
 }
