@@ -1,4 +1,10 @@
 main {
   width: 80%;
-  margin: 6em auto;
+  margin: 3em auto;
+}
+
+@media (min-width: 576px) {
+  main {
+    margin: 4em auto;
+  }
 }
